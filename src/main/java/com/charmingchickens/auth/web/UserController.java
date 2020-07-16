@@ -5,12 +5,19 @@ import com.charmingchickens.auth.service.UserService;
 import com.charmingchickens.auth.validator.UserValidator;
 import com.charmingchickens.auth.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -54,6 +61,83 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("profileForm",userService.findByUsername(name));
+        return "profile";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String profile(@ModelAttribute("profileForm") User profileForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "profile";
+        }
+        userService.save(profileForm);
+        return "redirect:/welcome";
+    }
+
+    @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
+    public String editProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("editForm",userService.findByUsername(name));
+        return "editProfile";
+    }
+
+    @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
+    public String editProfile(@ModelAttribute("editForm") User editForm, BindingResult bindingResult, Model model) {
+//        if (bindingResult.hasErrors()) {
+//            return "editProfile";
+//        }
+        userService.saveProfile(editForm);
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/createCompany", method = RequestMethod.GET)
+    public String createCompany(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("createCompanyForm",userService.findByUsername(name));
+        return "createCompany";
+    }
+
+    @RequestMapping(value = "/createCompany", method = RequestMethod.POST)
+    public String createCompany(@ModelAttribute("editForm") User createCompanyForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "createCompany";
+        }
+        userService.save(createCompanyForm);
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String post(@ModelAttribute("editForm") User postForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "profile";
+        }
+        userService.save(postForm);
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/discover", method = RequestMethod.GET)
+    public String discover(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("discoverForm",userService.findByUsername(name));
+        return "discover";
+    }
+
+    @RequestMapping(value = "/discover", method = RequestMethod.POST)
+    public String discover(@ModelAttribute("discoverForm") User profileForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "discover";
+        }
+        userService.save(profileForm);
+        return "redirect:/welcome";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)

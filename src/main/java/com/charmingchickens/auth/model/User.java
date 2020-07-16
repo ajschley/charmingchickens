@@ -1,6 +1,7 @@
 package com.charmingchickens.auth.model;
 
 import javax.persistence.*;
+import java.awt.*;
 import java.util.Set;
 
 @Entity
@@ -11,6 +12,15 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
+    private String businessName;
+    private String businessType;
+    private String location;
+    private String post;
+    private String name;
+    private String about;
+    private Image profilePic;
+    private String email;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,5 +65,51 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+    public String getBusinessType() {
+        return businessType;
+    }
+
+    public void setBusinessType(String businessType) {
+        this.businessType = businessType;
+    }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPost() { return post; }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    public String getName() { return name; }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAbout() { return about; }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String name) {
+        this.email = email;
     }
 }

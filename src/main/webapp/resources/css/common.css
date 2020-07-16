@@ -46,3 +46,59 @@ body {
 .has-error {
     color: red
 }
+
+/*#profileInfo {*/
+/*    margin: 0 auto;*/
+/*    width: 1600px;*/
+/*    border: solid black;*/
+/*}*/
+
+/*#leftSide {*/
+/*    float:left;*/
+/*    width:400px;*/
+/*    text-align: center;*/
+/*    border: solid black;*/
+/*}*/
+
+/*#rightSide {*/
+/*    float:right;*/
+/*    width:400px;*/
+/*    text-align: center;*/
+/*    border: solid black;*/
+/*}*/
+
+/*#middle {*/
+/*    width:800px;*/
+/*    text-align: center;*/
+/*    border: solid black;*/
+/*}*/
+
+#editButton {
+    text-align: center;
+}
+
+#profileInfo {
+    width:1600px;
+    border-top: solid black;
+}
+
+#leftSide {
+    float:left;
+    width:400px;
+    text-align: center;
+    border-right: solid black;
+}
+
+#rightSide {
+    float:right;
+    width:400px;
+    text-align: center;
+    border-left: solid black;
+}
+
+#middle {
+    margin:0 auto;
+    width:800px;
+    text-align: center;
+    /*border: solid black;*/
+}
