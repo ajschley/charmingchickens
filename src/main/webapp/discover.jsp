@@ -27,6 +27,7 @@
 </head>
 
 <body>
+<input type="hidden" id="results"/>
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -67,9 +68,18 @@
         </spring:bind>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
     </form:form>
 
 </div>
+<div>
+    <c:if test="${(discoverForm.search != null)}">
+        <c:forEach items="${results}" var="item">
+            <h3>${item.value}</h3><br>
+        </c:forEach>
+    </c:if>
+</div>
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

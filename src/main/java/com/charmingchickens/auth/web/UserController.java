@@ -1,5 +1,7 @@
 package com.charmingchickens.auth.web;
 
+import com.charmingchickens.auth.model.Company;
+import com.charmingchickens.auth.service.CompanyService;
 import com.charmingchickens.auth.service.SecurityService;
 import com.charmingchickens.auth.service.UserService;
 import com.charmingchickens.auth.validator.UserValidator;
@@ -23,6 +25,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CompanyService companyService;
 
     @Autowired
     private SecurityService securityService;
@@ -106,11 +111,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createCompany", method = RequestMethod.POST)
-    public String createCompany(@ModelAttribute("createCompanyForm") User createCompanyForm, BindingResult bindingResult, Model model) {
+    public String createCompany(@ModelAttribute("createCompanyForm") Company createCompanyForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "createCompany";
         }
-        userService.save(createCompanyForm);
+        companyService.save(createCompanyForm);
         return "redirect:/profile";
     }
 
@@ -136,8 +141,12 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "discover";
         }
+        if (discoverForm.getSearchType().equals("user")) {
+            model.addAttribute("results", userService.findUsers(discoverForm.getSearch()));
+//            userService.findUsers(discoverForm.getSearch());
+        }
         userService.saveDiscover(discoverForm);
-        return "discover";
+        return "redirect:/discover";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)

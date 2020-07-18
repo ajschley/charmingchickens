@@ -1,13 +1,17 @@
 com/charmingchickens/auth/repository/RoleRepository.class
 com/charmingchickens/auth/repository/UserRepository.class
 com/charmingchickens/auth/service/SecurityServiceImpl.class
+com/charmingchickens/auth/service/CompanyServiceImpl.class
 com/charmingchickens/auth/validator/UserValidator.class
 com/charmingchickens/auth/model/Role.class
 com/charmingchickens/auth/WebSecurityConfig.class
 com/charmingchickens/auth/WebApplication.class
+com/charmingchickens/auth/service/CompanyService.class
+com/charmingchickens/auth/repository/CompanyRepository.class
 com/charmingchickens/auth/service/UserDetailsServiceImpl.class
 com/charmingchickens/auth/model/User.class
 com/charmingchickens/auth/service/UserServiceImpl.class
+com/charmingchickens/auth/model/Company.class
 com/charmingchickens/auth/service/UserService.class
 com/charmingchickens/auth/web/UserController.class
 com/charmingchickens/auth/service/SecurityService.class

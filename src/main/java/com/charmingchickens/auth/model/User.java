@@ -24,6 +24,7 @@ public class User {
     private String recurring;
     private String search;
     private String searchType;
+    private List associatedCompanies;
 
 
     @Id
@@ -135,5 +136,11 @@ public class User {
 
     public void setSearchType(String searchType) {
         this.searchType = searchType;
+    }
+
+    public List getAssociatedCompanies() { return associatedCompanies; }
+
+    public void setAssociatedCompanies(List associatedCompanies) {
+        this.associatedCompanies = associatedCompanies;
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,6 +57,26 @@ public class UserServiceImpl implements UserService {
         existingUser.setSearchType(user.getSearchType());
         userRepository.save(existingUser);
     }
+
+    public Map<Long,String> findUsers(String name) {
+        List<User> results = userRepository.findAll();
+        Map<Long, String> matches = new HashMap<>();
+        for (User u: results) {
+            if (u.getName().toLowerCase().contains(name)) {
+                matches.put(u.getId(), u.getName());
+            }
+        }
+//        results.forEach(u -> {
+//            if (u.getName().toLowerCase().contains(name)) {
+//                matches.put(u.getId(), u.getName());
+//            }
+//        });
+        return matches;
+    }
+
+//    public void saveCompany(String associatedCompany) {
+//
+//    }
 
     @Override
     public User findByUsername(String username) {

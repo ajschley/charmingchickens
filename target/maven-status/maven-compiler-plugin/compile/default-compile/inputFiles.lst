@@ -1,6 +1,9 @@
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/repository/UserRepository.java
+/home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/repository/CompanyRepository.java
+/home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/service/CompanyServiceImpl.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/WebApplication.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/service/UserServiceImpl.java
+/home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/service/CompanyService.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/WebSecurityConfig.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/model/Role.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/service/SecurityServiceImpl.java
@@ -10,4 +13,5 @@
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/service/UserDetailsServiceImpl.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/web/UserController.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/service/UserService.java
+/home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/model/Company.java
 /home/alec/Code/internship/charmingchickens/src/main/java/com/charmingchickens/auth/repository/RoleRepository.java
