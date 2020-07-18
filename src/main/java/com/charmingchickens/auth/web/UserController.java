@@ -90,9 +90,9 @@ public class UserController {
 
     @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
     public String editProfile(@ModelAttribute("editForm") User editForm, BindingResult bindingResult, Model model) {
-//        if (bindingResult.hasErrors()) {
-//            return "editProfile";
-//        }
+        if (bindingResult.hasErrors()) {
+            return "editProfile";
+        }
         userService.saveProfile(editForm);
         return "redirect:/profile";
     }
@@ -106,7 +106,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/createCompany", method = RequestMethod.POST)
-    public String createCompany(@ModelAttribute("editForm") User createCompanyForm, BindingResult bindingResult, Model model) {
+    public String createCompany(@ModelAttribute("createCompanyForm") User createCompanyForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "createCompany";
         }
@@ -114,8 +114,8 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String post(@ModelAttribute("editForm") User postForm, BindingResult bindingResult, Model model) {
+    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    public String post(@ModelAttribute("postForm") User postForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "profile";
         }
@@ -132,12 +132,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "/discover", method = RequestMethod.POST)
-    public String discover(@ModelAttribute("discoverForm") User profileForm, BindingResult bindingResult, Model model) {
+    public String discover(@ModelAttribute("discoverForm") User discoverForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "discover";
         }
-        userService.save(profileForm);
-        return "redirect:/welcome";
+        userService.saveDiscover(discoverForm);
+        return "discover";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)

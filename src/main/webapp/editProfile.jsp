@@ -76,6 +76,89 @@
             </div>
         </spring:bind>
 
+        <spring:bind path="from1">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:select path="from1" class="form-control">
+                    <form:option value="NONE" label="--- Select a Start Hour ---"/>
+                    <form:option value="1" item="1" />
+                    <form:option value="2" item="2" />
+                    <form:option value="3" item="3" />
+                    <form:option value="4" item="4" />
+                    <form:option value="5" item="5" />
+                    <form:option value="6" item="6" />
+                    <form:option value="7" item="7" />
+                    <form:option value="8" item="8" />
+                    <form:option value="9" item="9" />
+                    <form:option value="10" item="10" />
+                    <form:option value="11" item="11" />
+                    <form:option value="12" item="12" />
+                </form:select>
+                <form:errors path="from1"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="from2">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:select path="from2" class="form-control">
+                    <form:option value="NONE" label="--- Select a Start Minute ---"/>
+                    <form:option value="00" item="00" />
+                    <form:option value="15" item="15" />
+                    <form:option value="30" item="30" />
+                    <form:option value="45" item="45" />
+                </form:select>
+                    <%--                <form:input type="text" path="location" class="form-control" placeholder="Location"></form:input>--%>
+                <form:errors path="from2"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="to1">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:select path="to1" class="form-control">
+                    <form:option value="NONE" label="--- Select an End Hour ---"/>
+                    <form:option value="1" item="1" />
+                    <form:option value="2" item="2" />
+                    <form:option value="3" item="3" />
+                    <form:option value="4" item="4" />
+                    <form:option value="5" item="5" />
+                    <form:option value="6" item="6" />
+                    <form:option value="7" item="7" />
+                    <form:option value="8" item="8" />
+                    <form:option value="9" item="9" />
+                    <form:option value="10" item="10" />
+                    <form:option value="11" item="11" />
+                    <form:option value="12" item="12" />
+                </form:select>
+                <form:errors path="to1"></form:errors>
+
+            </div>
+        </spring:bind>
+
+        <spring:bind path="to2">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:select path="to2" class="form-control">
+                    <form:option value="NONE" label="--- Select an End Minute ---"/>
+                    <form:option value="00" item="00" />
+                    <form:option value="15" item="15" />
+                    <form:option value="30" item="30" />
+                    <form:option value="45" item="45" />
+                </form:select>
+                <form:errors path="to2"></form:errors>
+            </div>
+        </spring:bind>
+        <%--                <form:input type="text" path="location" class="form-control" placeholder="Location"></form:input>--%>
+
+        <spring:bind path="recurring">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:select path="recurring" class="form-control">
+                    <form:option value="NONE" label="--- Select a Frequency ---"/>
+                    <form:option value="Daily" item="Daily" />
+                    <form:option value="Weekly" item="Weekly" />
+                    <form:option value="Monthly" item="Monthly" />
+                </form:select>
+                <form:errors path="recurring"></form:errors>
+            </div>
+        </spring:bind>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 

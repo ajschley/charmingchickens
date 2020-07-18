@@ -4,6 +4,8 @@ import com.charmingchickens.auth.model.User;
 import com.charmingchickens.auth.repository.RoleRepository;
 import com.charmingchickens.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +29,33 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveProfile(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User existingUser = findByUsername(name);
 
-        user.setName(user.getName());
+        existingUser.setName(user.getName());
 
-        user.setAbout(user.getAbout());
-        user.setEmail(user.getEmail());
-        userRepository.save(user);
+        existingUser.setAbout(user.getAbout());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setFrom1(user.getFrom1());
+        existingUser.setFrom2(user.getFrom2());
+        existingUser.setTo1(user.getTo1());
+        existingUser.setTo2(user.getTo2());
+        existingUser.setRecurring(user.getRecurring());
+
+        userRepository.save(existingUser);
+    }
+
+    @Override
+    public void saveDiscover(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User existingUser = findByUsername(name);
+
+        existingUser.setSearch(user.getSearch());
+
+        existingUser.setSearchType(user.getSearchType());
+        userRepository.save(existingUser);
     }
 
     @Override

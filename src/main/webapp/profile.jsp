@@ -53,10 +53,19 @@
             <h2>asdfasdfa</h2>
         </div>
         <div id="name">
-            <h2>Alec Schley</h2>
+            <h2>${profileForm.name}</h2>
+        </div>
+        <div id="email">
+            <h3>${profileForm.email}</h3>
         </div>
         <div id="about">
-            <h3>Hello my name is Alec Schley, and I work for blah blah blah</h3>
+            <h3>${profileForm.about}</h3>
+        </div>
+        <div id="officeHours">
+            <h2>Office Hours</h2>
+            <h3>${profileForm.recurring}</h3>
+            <h3>Start: ${profileForm.from1}:${profileForm.from2}</h3>
+            <h3>End: ${profileForm.to1}:${profileForm.to2}</h3>
         </div>
         <div id="edit">
             <form action="/editProfile" method="get">
@@ -97,7 +106,7 @@
         <div id="post">
             <label for="leavePost">Leave a post...</label>
             <input type="text" id="leavePost">
-            <form action="/profile" method="get">
+            <form action="/post" method="get">
                 <button type="submit">Post</button>
             </form>
 <%--            <button type="button" id="postButton" onclick=setPost(>Post</button>--%>

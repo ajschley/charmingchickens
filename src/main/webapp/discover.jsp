@@ -51,17 +51,18 @@
 
     <form:form method="POST" modelAttribute="discoverForm" class="form-signin">
         <h2 class="form-signin-heading">Discover</h2>
-        <spring:bind path="businessType">
+        <spring:bind path="search">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="businessType" class="form-control" placeholder="Type of Business"></form:input>
-                <form:errors path="businessType"></form:errors>
+                <form:input type="text" path="search" class="form-control" placeholder="Search"></form:input>
+                <form:errors path="search"></form:errors>
             </div>
         </spring:bind>
 
-        <spring:bind path="location">
+        <spring:bind path="searchType">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="location" class="form-control" placeholder="Location"></form:input>
-                <form:errors path="location"></form:errors>
+                <form:radiobutton path="searchType" value="user"/>User
+                <form:radiobutton path="searchType" value="company"/>Company
+                <form:errors path="searchType"></form:errors>
             </div>
         </spring:bind>
 

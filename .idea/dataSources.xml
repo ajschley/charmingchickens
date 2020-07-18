@@ -4,8 +4,12 @@
     <data-source source="LOCAL" name="charmingchickens@localhost" uuid="a2c2abda-1ddc-4431-bc52-46ab8ce61df0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <remarks>time</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/charmingchickens</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

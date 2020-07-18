@@ -7,5 +7,7 @@ public interface UserService {
 
     void saveProfile(User user);
 
+    void saveDiscover(User user);
+
     User findByUsername(String username);
 }
