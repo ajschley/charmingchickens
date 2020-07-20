@@ -51,17 +51,17 @@
 
     <form:form method="POST" modelAttribute="joinCompanyForm" class="form-signin">
         <h2 class="form-signin-heading">Profile</h2>
-        <spring:bind path="businessName">
+        <spring:bind path="search">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="businessName" class="form-control" placeholder="Business Name"
+                <form:input type="text" path="search" class="form-control" placeholder="Business Name"
                             autofocus="true"></form:input>
-                <form:errors path="businessName"></form:errors>
+                <form:errors path="search"></form:errors>
             </div>
         </spring:bind>
 
-        <spring:bind path="businessType">
+        <spring:bind path="searchType">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:select path="businessType" class="form-control">
+                <form:select path="searchType" class="form-control">
                     <form:option value="NONE" label="--- Select an Industry ---"/>
                     <form:option value="Aviation" item="Aviation" />
                     <form:option value="Arts" item="Arts" />
@@ -74,7 +74,7 @@
                     <form:option value="Technology" item="Technology" />
                 </form:select>
                     <%--                <form:input type="text" path="location" class="form-control" placeholder="Location"></form:input>--%>
-                <form:errors path="businessType"></form:errors>
+                <form:errors path="searchType"></form:errors>
             </div>
         </spring:bind>
 
@@ -141,6 +141,19 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 
+</div>
+<div id="companies" class="form-signin">
+    <h1>Results</h1>
+    <div>
+        <c:if test="${(joinCompanyForm.search != null)}">
+            <c:forEach items="${results}" var="item">
+                <div id="company">
+                    <h3>${item.value}<button type="submit">Join</button><br>
+                </div>
+
+            </c:forEach>
+        </c:if>
+    </div>
 </div>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

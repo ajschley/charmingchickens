@@ -90,9 +90,15 @@
         <div id="businessTitle">
             <h2>Associated Businesses</h2>
         </div>
-        <div id="businesses">
-            <h3>Business</h3>
+        <div id="businessInfo">
+            <div id="business">
+                <h2>Business</h2>
+            </div>
+            <div id="businesses">
+                <h3>Business<button type="submit">View</button></h3>
+            </div>
         </div>
+        <br>
         <div id="createCompany">
             <form action="/createCompany" method="get">
                 <button type="submit">Create Company</button>
@@ -100,14 +106,14 @@
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
         <br>
-        <div>
-            <form action="/createCompany" method="get">
+        <div id="joinCompany">
+            <form action="/joinCompany" method="get">
                 <button type="submit">Join Company</button>
             </form>
         </div>
         <br>
     </div>
-    <div id="middle">
+    <div id="middle" >
         <h1>Your Wall</h1>
         <div id="post">
             <label for="leavePost">Leave a post...</label>

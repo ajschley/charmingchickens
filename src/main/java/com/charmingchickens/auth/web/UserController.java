@@ -122,16 +122,20 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         model.addAttribute("joinCompanyForm",userService.findByUsername(name));
-        return "createCompany";
+        return "joinCompany";
     }
 
     @RequestMapping(value = "/joinCompany", method = RequestMethod.POST)
-    public String joinCompany(@ModelAttribute("joinCompanyForm") Company joinCompanyForm, BindingResult bindingResult, Model model) {
+    public String joinCompany(@ModelAttribute("joinCompanyForm") User joinCompanyForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "joinCompany";
         }
-        companyService.save(joinCompanyForm);
-        return "redirect:/profile";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("discoverForm",userService.findByUsername(name));
+        model.addAttribute("results", userService.findCompanies(joinCompanyForm.getSearch()));
+//        userService.saveJoin(joinCompanyForm);
+        return "joinCompany";
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.GET)

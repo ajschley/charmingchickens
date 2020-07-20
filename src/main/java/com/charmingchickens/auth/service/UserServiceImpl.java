@@ -62,6 +62,19 @@ public class UserServiceImpl implements UserService {
         userRepository.save(existingUser);
     }
 
+    @Override
+    public void saveJoin(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User existingUser = findByUsername(name);
+
+        existingUser.setSearch(user.getSearch());
+
+        existingUser.setSearchType(user.getSearchType());
+        existingUser.setLocation(user.getLocation());
+        userRepository.save(existingUser);
+    }
+
     public Map<Long,String> findUsers(String name) {
         List<User> results = userRepository.findAll();
         Map<Long, String> matches = new HashMap<>();

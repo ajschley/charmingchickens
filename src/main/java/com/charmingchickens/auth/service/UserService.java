@@ -12,6 +12,8 @@ public interface UserService {
 
     void saveDiscover(User user);
 
+    void saveJoin(User user);
+
     Map<Long, String > findUsers(String name);
 
     Map<Long, String > findCompanies(String name);

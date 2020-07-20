@@ -25,6 +25,7 @@ public class User {
     private String search;
     private String searchType;
     private List associatedCompanies;
+    private String location;
 
 
     @Id
@@ -143,6 +144,14 @@ public class User {
     public void setAssociatedCompanies(List associatedCompanies) {
         this.associatedCompanies = associatedCompanies;
     }
+
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+
 
 //    public Image getProfilePic() { return profilePic; }
 //

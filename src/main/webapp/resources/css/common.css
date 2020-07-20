@@ -86,6 +86,7 @@ body {
     width:375px;
     text-align: center;
     border: solid black;
+    background-color: cornflowerblue;
 }
 
 #rightSide {
@@ -93,6 +94,7 @@ body {
     width:375px;
     text-align: center;
     border: solid black;
+    background-color: cornflowerblue;
 }
 
 #middle {
@@ -107,6 +109,7 @@ body {
     width:350px;
     text-align: center;
     border: solid black;
+    background-color: white;
 }
 
 #profileAbout {
@@ -114,6 +117,7 @@ body {
     width:350px;
     text-align: center;
     border: solid black;
+    background-color: white;
 }
 
 h2 {
@@ -132,3 +136,99 @@ h4 {
     text-align: center;
     border: solid black;
 }
+
+#businessInfo {
+    margin:0 auto;
+    width:350px;
+    text-align: center;
+    border: solid black;
+    background-color: white;
+}
+
+#home {
+    background-position: center;
+    height: 800px;
+    border: solid black;
+    background-image: url('https://news.blr.com/app/uploads/sites/3/2019/04/diverse-workers.jpg');
+    background-repeat: no-repeat;
+    background-size: 1400px;
+}
+
+/*#ourmission {*/
+/*    border: solid black*/
+/*}*/
+
+/*#about{*/
+/*    border: solid black;*/
+/*    !*grid-column-start: 1;*!*/
+/*    !*grid-column-end: 2;*!*/
+/*    !*grid-row: 1;*!*/
+/*}*/
+
+#abouttext {
+    width: 50%;
+    float: left;
+    /*padding: 20px;*/
+    /*border: 2px solid red;*/
+    /*width: 49%;*/
+    /*!*float:left;*!*/
+    /*border-left: solid black;*/
+    /*border-bottom: solid black;*/
+    /*!*text-align: center;*!*/
+    /*!*grid-row: 2;*!*/
+    /*!*grid-column: 1;*!*/
+}
+#aboutpic {
+    width: 50%;
+    float: right;
+    /*padding: 20px;*/
+    /*border: 2px solid red;*/
+    /*width: 49%;*/
+    /*float:right;*/
+    /*border-right: solid black;*/
+    /*border-bottom: solid black;*/
+    /*!*grid-row: 2;*!*/
+    /*!*grid-column: 2;*!*/
+    /*!*display: flex;*!*/
+    /*!*align-items: center;*!*/
+    /*!*justify-content: center;*!*/
+
+}
+
+#apic {
+    float: right;
+    border: solid black;
+    border-radius: 50%;
+    width: 525px;
+    height: 525px;
+}
+
+#tpic {
+    border: solid black;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+}
+
+#row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+#column {
+    float: left;
+    width: 45%;
+    padding: 22px;
+}
+#members {
+    margin: auto;
+    width: 50%;
+}
+
+/*#company h3 {*/
+/*    float: left;*/
+/*}*/
+
+/*#company button {*/
+/*    float: right;*/
+/*}*/

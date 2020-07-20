@@ -79,12 +79,11 @@
                 <c:forEach items="${results}" var="item">
                     <h3>${item.value}</h3><br>
                 </c:forEach>
-                ${discoverForm.search} = null
             </c:if>
         </div>
 </div>
 
-<!-- /container -->
+<!-- /container -->Business
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
