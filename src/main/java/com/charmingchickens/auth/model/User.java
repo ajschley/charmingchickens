@@ -12,7 +12,7 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
-    private String post;
+    private String message;
     private String name;
     private String about;
     private Image profilePic;
@@ -72,10 +72,10 @@ public class User {
         this.roles = roles;
     }
 
-    public String getPost() { return post; }
+    public String getMessage() { return message; }
 
-    public void setPost(String post) {
-        this.post = post;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getName() { return name; }
@@ -143,4 +143,10 @@ public class User {
     public void setAssociatedCompanies(List associatedCompanies) {
         this.associatedCompanies = associatedCompanies;
     }
+
+//    public Image getProfilePic() { return profilePic; }
+//
+//    public void setProfilePic(Image profilePic) {
+//        this.profilePic = profilePic;
+//    }
 }

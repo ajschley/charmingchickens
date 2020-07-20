@@ -12,6 +12,7 @@ public class Company {
     private String businessName;
     private String businessType;
     private String location;
+    private User creator;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,4 +55,9 @@ public class Company {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @ManyToOne
+    public User getCreator() { return creator; }
+
+    public void setCreator(User creator) { this.creator = creator; }
 }

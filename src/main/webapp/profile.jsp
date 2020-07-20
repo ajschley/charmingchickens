@@ -49,24 +49,28 @@
 </div>
 <div class="container" id="profileInfo">
     <div id="leftSide">
-        <div id="pic">
-            <h2>asdfasdfa</h2>
+<%--        <div id="pic">--%>
+<%--            <h2>asdfasdfa</h2>--%>
+<%--        </div>--%>
+        <br>
+        <div id="profileAbout">
+            <div id="name">
+                <h1>${profileForm.name}</h1>
+            </div>
+            <div id="email">
+                <h3>${profileForm.email}</h3>
+            </div>
+            <div id="about">
+                <h4>${profileForm.about}</h4>
+            </div>
         </div>
-        <div id="name">
-            <h2>${profileForm.name}</h2>
-        </div>
-        <div id="email">
-            <h3>${profileForm.email}</h3>
-        </div>
-        <div id="about">
-            <h3>${profileForm.about}</h3>
-        </div>
+    <br>
         <div id="officeHours">
-            <h2>Office Hours</h2>
-            <h3>${profileForm.recurring}</h3>
+            <h2>Office Hours: ${profileForm.recurring}</h2>
             <h3>Start: ${profileForm.from1}:${profileForm.from2}</h3>
             <h3>End: ${profileForm.to1}:${profileForm.to2}</h3>
         </div>
+    <br>
         <div id="edit">
             <form action="/editProfile" method="get">
                 <button type="submit">Edit Profile</button>
@@ -80,6 +84,7 @@
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
+        <br>
     </div>
     <div id="rightSide">
         <div id="businessTitle">
@@ -100,22 +105,30 @@
                 <button type="submit">Join Company</button>
             </form>
         </div>
+        <br>
     </div>
     <div id="middle">
         <h1>Your Wall</h1>
         <div id="post">
             <label for="leavePost">Leave a post...</label>
             <input type="text" id="leavePost">
-            <form action="/post" method="get">
+<%--            <form:form method="POST" modelAttribute="postForm" class="form-signin">--%>
+<%--                <h2 class="form-signin-heading">Profile</h2>--%>
+
+<%--                <spring:bind path="message">--%>
+<%--                    <div class="form-group ${status.error ? 'has-error' : ''}">--%>
+<%--                        <form:input type="text" path="message" class="form-control" placeholder="Please leave a post..."--%>
+<%--                                    autofocus="true"></form:input>--%>
+<%--                        <form:errors path="message"></form:errors>--%>
+<%--                    </div>--%>
+<%--                </spring:bind>--%>
+<%--            </form:form>--%>
+            <form action="/post" method="post">
                 <button type="submit">Post</button>
             </form>
-<%--            <button type="button" id="postButton" onclick=setPost(>Post</button>--%>
         </div>
         <div id="pastPosts">
-            <h4>asdfasdfsadfsdfsadfsdfsdfsdfsd</h4>
-            <h4>asdfasdfsadfsdfsadfsdfsdfsdfsd</h4>
-            <h4>asdfasdfsadfsdfsadfsdfsdfsdfsd</h4>
-            <h4>asdfasdfsadfsdfsadfsdfsdfsdfsd</h4>
+            <h4>${postForm.post}</h4>
         </div>
     </div>
 </div>

@@ -5,5 +5,5 @@ import com.charmingchickens.auth.model.Company;
 public interface CompanyService {
     void save(Company company);
 
-    Company findByName(String name);
+    Company findByBusinessName(String name);
 }

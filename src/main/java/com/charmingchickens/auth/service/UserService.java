@@ -14,6 +14,10 @@ public interface UserService {
 
     Map<Long, String > findUsers(String name);
 
+    Map<Long, String > findCompanies(String name);
+
+    void savePost(User user);
+
 //    void saveCompany(String associatedCompany);
 
     User findByUsername(String username);

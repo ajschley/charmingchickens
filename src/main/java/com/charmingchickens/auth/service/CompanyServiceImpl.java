@@ -12,20 +12,27 @@ import org.springframework.stereotype.Service;
 public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private UserService userService;
     @Override
     public void save(Company company) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User existingUser = userService.findByUsername(name);
         Company newCompany = new Company();
 
         newCompany.setBusinessName(company.getBusinessName());
 
         newCompany.setBusinessType(company.getBusinessType());
         newCompany.setLocation(company.getLocation());
+        newCompany.setCreator(existingUser);
 
         companyRepository.save(newCompany);
     }
 
     @Override
-    public Company findByName(String name) {
+    public Company findByBusinessName(String name) {
         return companyRepository.findByBusinessName(name);
     }
 

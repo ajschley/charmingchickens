@@ -1,6 +1,8 @@
 package com.charmingchickens.auth.service;
 
+import com.charmingchickens.auth.model.Company;
 import com.charmingchickens.auth.model.User;
+import com.charmingchickens.auth.repository.CompanyRepository;
 import com.charmingchickens.auth.repository.RoleRepository;
 import com.charmingchickens.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -62,7 +66,7 @@ public class UserServiceImpl implements UserService {
         List<User> results = userRepository.findAll();
         Map<Long, String> matches = new HashMap<>();
         for (User u: results) {
-            if (u.getName().toLowerCase().contains(name)) {
+            if (u.getName() != null && u.getName().toLowerCase().contains(name.toLowerCase())) {
                 matches.put(u.getId(), u.getName());
             }
         }
@@ -72,6 +76,31 @@ public class UserServiceImpl implements UserService {
 //            }
 //        });
         return matches;
+    }
+
+    public Map<Long,String> findCompanies(String name) {
+        List<Company> results = companyRepository.findAll();
+        Map<Long, String> matches = new HashMap<>();
+        for (Company u: results) {
+            if (u.getBusinessName() != null && u.getBusinessName().toLowerCase().contains(name.toLowerCase())) {
+                matches.put(u.getId(), u.getBusinessName());
+            }
+        }
+//        results.forEach(u -> {
+//            if (u.getName().toLowerCase().contains(name)) {
+//                matches.put(u.getId(), u.getName());
+//            }
+//        });
+        return matches;
+    }
+
+    @Override
+    public void savePost(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User existingUser = findByUsername(name);
+        existingUser.setMessage(user.getMessage());
+        userRepository.save(existingUser);
     }
 
 //    public void saveCompany(String associatedCompany) {

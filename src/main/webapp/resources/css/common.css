@@ -79,26 +79,56 @@ body {
 
 #profileInfo {
     width:1600px;
-    border-top: solid black;
 }
 
 #leftSide {
     float:left;
-    width:400px;
+    width:375px;
     text-align: center;
-    border-right: solid black;
+    border: solid black;
 }
 
 #rightSide {
     float:right;
-    width:400px;
+    width:375px;
     text-align: center;
-    border-left: solid black;
+    border: solid black;
 }
 
 #middle {
     margin:0 auto;
     width:800px;
     text-align: center;
-    /*border: solid black;*/
+    border: solid black;
+}
+
+#officeHours {
+    margin:0 auto;
+    width:350px;
+    text-align: center;
+    border: solid black;
+}
+
+#profileAbout {
+    margin:0 auto;
+    width:350px;
+    text-align: center;
+    border: solid black;
+}
+
+h2 {
+    font-size: xx-large;
+}
+
+h3 {
+    font-size: x-large;
+}
+
+h4 {
+    font-size: small;
+}
+
+#results {
+    text-align: center;
+    border: solid black;
 }

@@ -51,6 +51,22 @@
 
     <form:form method="POST" modelAttribute="editForm" class="form-signin">
         <h2 class="form-signin-heading">Profile</h2>
+
+<%--        <spring:bind path="profilePic">--%>
+<%--            <div class="form-group ${status.error ? 'has-error' : ''}">--%>
+
+<%--                <form:input type="image" path="profilePic" class="form-control"--%>
+<%--                            autofocus="true"></form:input>--%>
+<%--                <form:errors path="profilePic"></form:errors>--%>
+
+<%--                <form method="POST" action="uploadFile" enctype="multipart/form-data">--%>
+<%--                    File to upload: <input type="file" name="file"><br />--%>
+<%--                    Name: <input type="text" name="name"><br /> <br />--%>
+<%--                    <input type="submit" value="Upload"> Press here to upload the file!--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--        </spring:bind>--%>
+
         <spring:bind path="name">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="name" class="form-control" placeholder="Please enter your full name"

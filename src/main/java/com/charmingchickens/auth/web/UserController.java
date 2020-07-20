@@ -104,9 +104,7 @@ public class UserController {
 
     @RequestMapping(value = "/createCompany", method = RequestMethod.GET)
     public String createCompany(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        model.addAttribute("createCompanyForm",userService.findByUsername(name));
+        model.addAttribute("createCompanyForm", new Company());
         return "createCompany";
     }
 
@@ -119,12 +117,37 @@ public class UserController {
         return "redirect:/profile";
     }
 
+    @RequestMapping(value = "/joinCompany", method = RequestMethod.GET)
+    public String joinCompany(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("joinCompanyForm",userService.findByUsername(name));
+        return "createCompany";
+    }
+
+    @RequestMapping(value = "/joinCompany", method = RequestMethod.POST)
+    public String joinCompany(@ModelAttribute("joinCompanyForm") Company joinCompanyForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "joinCompany";
+        }
+        companyService.save(joinCompanyForm);
+        return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/post", method = RequestMethod.GET)
+    public String message(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("postForm",userService.findByUsername(name));
+        return "post";
+    }
+
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String post(@ModelAttribute("postForm") User postForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "profile";
+            return "post";
         }
-        userService.save(postForm);
+        userService.savePost(postForm);
         return "redirect:/profile";
     }
 
@@ -141,12 +164,19 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "discover";
         }
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("discoverForm",userService.findByUsername(name));
+
         if (discoverForm.getSearchType().equals("user")) {
             model.addAttribute("results", userService.findUsers(discoverForm.getSearch()));
 //            userService.findUsers(discoverForm.getSearch());
+        } else {
+            model.addAttribute("results", userService.findCompanies(discoverForm.getSearch()));
         }
-        userService.saveDiscover(discoverForm);
-        return "redirect:/discover";
+//        userService.saveDiscover(discoverForm);
+        return "discover";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)

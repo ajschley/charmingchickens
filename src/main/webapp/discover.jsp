@@ -27,7 +27,7 @@
 </head>
 
 <body>
-<input type="hidden" id="results"/>
+<%--<input type="hidden" id="results"/>--%>
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -72,12 +72,16 @@
     </form:form>
 
 </div>
-<div>
-    <c:if test="${(discoverForm.search != null)}">
-        <c:forEach items="${results}" var="item">
-            <h3>${item.value}</h3><br>
-        </c:forEach>
-    </c:if>
+<div class="form-signin">
+        <h1>Results</h1>
+        <div>
+            <c:if test="${(discoverForm.search != null)}">
+                <c:forEach items="${results}" var="item">
+                    <h3>${item.value}</h3><br>
+                </c:forEach>
+                ${discoverForm.search} = null
+            </c:if>
+        </div>
 </div>
 
 <!-- /container -->
