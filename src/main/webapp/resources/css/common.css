@@ -47,32 +47,6 @@ body {
     color: red
 }
 
-/*#profileInfo {*/
-/*    margin: 0 auto;*/
-/*    width: 1600px;*/
-/*    border: solid black;*/
-/*}*/
-
-/*#leftSide {*/
-/*    float:left;*/
-/*    width:400px;*/
-/*    text-align: center;*/
-/*    border: solid black;*/
-/*}*/
-
-/*#rightSide {*/
-/*    float:right;*/
-/*    width:400px;*/
-/*    text-align: center;*/
-/*    border: solid black;*/
-/*}*/
-
-/*#middle {*/
-/*    width:800px;*/
-/*    text-align: center;*/
-/*    border: solid black;*/
-/*}*/
-
 #editButton {
     text-align: center;
 }
@@ -82,7 +56,7 @@ body {
     float:left;
     width:25%;
     text-align: center;
-    border: solid black;
+    border: solid gray;
 }
 
 #rightSide {
@@ -90,31 +64,32 @@ body {
     float:right;
     width:25%;
     text-align: center;
-    border: solid black;
+    border: solid gray;
 }
 
 #middle {
+    border-radius: 25px;
     margin:0 auto;
-    width:50%;
+    width:46%;
     text-align: center;
+    border: solid gray;
 }
 
 #officeHours {
-    border-radius: 25px;
+    padding-bottom: 10px;
     margin:0 auto;
     width: 82%;
     text-align: center;
-    border: solid black;
-    background-color: white;
+    border: solid gray;
+
 }
 
 #profileAbout {
-    border-radius: 25px;
+    padding-bottom: 10px;
     margin:0 auto;
     width: 82%;
     text-align: center;
-    border: solid black;
-    background-color: white;
+    border: solid gray;
 }
 
 h2 {
@@ -127,6 +102,9 @@ h3 {
 
 h4 {
     font-size: medium;
+}
+h7 {
+    font-size: small;
 }
 
 #results {
@@ -141,12 +119,10 @@ h4 {
 }
 
 #businessInfo {
-    border-radius: 25px;
     margin:0 auto;
     width: 82%;
     text-align: center;
-    border: solid black;
-    background-color: white;
+    border: solid gray;
 }
 
 #home {
@@ -158,26 +134,36 @@ h4 {
     background-size: 1400px;
 }
 
-/*#ourmission {*/
-/*    border: solid black*/
-/*}*/
+#about {
+    height: 610px;
+}
 
-/*#about{*/
-/*    border: solid black;*/
-/*    !*grid-column-start: 1;*!*/
-/*    !*grid-column-end: 2;*!*/
-/*    !*grid-row: 1;*!*/
-/*}*/
+#event1 {
+    height: 610px;
+}
+
+#event2 {
+    height: 610px;
+}
+
+#event3 {
+    height: 610px;
+}
 
 #abouttext {
     padding-right: 20px;
     width: 50%;
+
     float: left;
+    grid-row: 1;
+    grid-column: 1;
 }
 
 #aboutpic {
     width: 50%;
     float: right;
+    grid-row: 1;
+    grid-column: 2;
 }
 
 #apic {
@@ -187,17 +173,6 @@ h4 {
     width: 100%;
     height: 100%;
 }
-
-/*#servtext {*/
-/*    width: 50%;*/
-/*    float: right;*/
-
-/*}*/
-/*#servpic {*/
-/*    width: 50%;*/
-/*    float: left;*/
-
-/*}*/
 
 #tpic {
     border: solid black;
@@ -224,18 +199,101 @@ h4 {
     text-align: center;
 }
 
-#news {
+#news-title {
     background-position: center;
     height: 400px;
     border: solid black;
     background-image: url('https://blogs.microsoft.com/uploads/sites/134/2018/03/5Q0A1952.jpg');
     background-repeat: no-repeat;
     background-size: 1400px;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
-/*#company h3 {*/
-/*    float: left;*/
-/*}*/
 
-/*#company button {*/
-/*    float: right;*/
-/*}*/
+#epic {
+    float: right;
+    border: solid black;
+    border-radius: 50%;
+    width: 550px;
+    height: 550px;
+}
+
+#e2pic {
+    float:left;
+    height: 550px;
+    width: 550px;
+    border: solid black;
+}
+
+#e3pic {
+    float: right;
+    border: solid black;
+    border-radius: 50%;
+    width: 550px;
+    height: 550px;
+}
+
+#event1text {
+    height: 550px;
+    padding-right: 20px;
+    width: 50%;
+    float: left;
+    grid-row: 1;
+    grid-column: 1;
+
+}
+#event1pic {
+    height: 550px;
+    width: 50%;
+    float:right;
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+}
+
+#event2text {
+    height: 550px;
+    padding-left: 20px;
+    width: 50%;
+    float: right;
+    grid-row: 2;
+    grid-column: 2;
+
+}
+#event2pic {
+    height: 550px;
+    width: 50%;
+    float: left;
+    grid-row: 2;
+    grid-column: 1;
+    display: flex;
+
+}
+
+#event3text {
+    padding-right: 20px;
+    width: 50%;
+    float: left;
+    grid-row: 3;
+    grid-column: 1;
+
+}
+#event3pic {
+    width: 50%;
+    float: right;
+    grid-row: 3;
+    grid-column: 2;
+    display: flex;
+}
+
+.profileButton {
+    background-color: white;
+    font-size: 16px;
+    width: 150px;
+}
+
+#posts {
+    border: solid lightgray;
+    background-color: white;
+}

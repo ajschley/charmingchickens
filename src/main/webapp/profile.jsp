@@ -66,27 +66,26 @@
         <br>
         <div id="profileAbout">
             <div id="about">
-                <h3 style="text-align: left; margin-left: 10px">Bio:</h3>
+                <h3 style="text-align: left; margin-left: 10px"><u>Bio:</u></h3>
                 <h4 style="text-align: left; margin-left: 10px">${profileForm.about}</h4>
             </div>
         </div>
     <br>
         <div id="officeHours">
-            <h3 style="text-align: left; margin-left: 10px">Office Hours: ${profileForm.recurring}</h3>
-            <h4>Start: ${profileForm.from1}:${profileForm.from2}</h4>
-            <h4>End: ${profileForm.to1}:${profileForm.to2}</h4>
+            <h3 style="text-align: left; margin-left: 10px"><u>Office Hours: ${profileForm.recurring}</u></h3>
+            <h4>Start: ${profileForm.from1}:${profileForm.from2} | End: ${profileForm.to1}:${profileForm.to2}</h4>
         </div>
     <br>
         <div id="edit">
             <form action="/editProfile" method="get">
-                <button type="submit">Edit Profile</button>
+                <button class="profileButton" type="submit">Edit Profile</button>
             </form>
 <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
         <br>
         <div id="connections">
             <form action="/editProfile" method="get">
-                <button type="submit">My Connections</button>
+                <button class="profileButton" type="submit">My Connections</button>
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
@@ -99,37 +98,59 @@
             <br>
         </div>
         <div id="businessInfo">
-            <div id="businesses">
-                <h3 style="text-align: left; padding-bottom: 10px; margin-left: 10px">Business<button type="submit" style="float:right; margin-right: 10px">View</button></h3>
-            </div>
+                <c:forEach items="${results}" var="item">
+                    <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+                </c:forEach>
+                <c:forEach items="${results2}" var="item">
+                    <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+                </c:forEach>
+
         </div>
         <br>
         <div id="createCompany">
             <form action="/createCompany" method="get">
-                <button type="submit">Create Company</button>
+                <button class="profileButton" type="submit">Create Company</button>
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
         <br>
         <div id="joinCompany">
             <form action="/joinCompany" method="get">
-                <button type="submit">Join Company</button>
+                <button class="profileButton" type="submit">Join Company</button>
             </form>
         </div>
         <br>
     </div>
     <div id="middle" >
-        <h1 style="text-align: left; margin-left: 25px">Your Wall</h1>
+        <br>
         <div id="post" style="text-align: left; margin-left: 25px">
-            <form name="theform">
-                <textarea id="p" style="border:1px solid black" rows="5" cols="63" placeholder="Leave a post..." onKeyup="checkform2()"></textarea>
-            </form>
-            <form action="/post" method="post">
-                <input onclick="addPost(p.valueOf())" id="submitbutton2" type="submit" disabled="disabled" value="Post" />
-            </form>
+            <form:form method="POST" modelAttribute="profileForm">
+                <h1 class="form-signin-heading"><u>Your Wall</u></h1>
+                <spring:bind path="post">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <form:textarea rows="5" cssStyle="width: 95%; text-align: left" type="text" path="post" class="form-control" placeholder="Leave a post..."></form:textarea>
+                        <form:errors path="post"></form:errors>
+                    </div>
+                </spring:bind>
+
+                <button style="text-align: left" type="submit">Post</button>
+
+            </form:form>
+<%--            <form name="theform">--%>
+<%--                <textarea id="p" style="border:1px solid black" rows="5" cols="57" placeholder="Leave a post..." onKeyup="checkform()"></textarea>--%>
+<%--            </form>--%>
+<%--            <form action="/post" method="post">--%>
+<%--                <input id="submitbutton2" type="submit" disabled="disabled" value="Post" />--%>
+<%--            </form>--%>
         </div>
-        <div id="pastPosts">
-            <h4>${postForm.post}</h4>
+        <br>
+        <div id="pastPosts" >
+            <h1 class="form-signin-heading" style="text-align: left; margin-left: 25px"><u>Past Activity</u></h1>
+                <c:forEach items="${results2}" var="item">
+                    <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="posts">
+                        <h7 style="text-align: left; margin-left: 10px">${item.value}</h7>
+                    </div><br>
+                </c:forEach>
         </div>
     </div>
 </div>
@@ -138,7 +159,7 @@
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 <script>
-    function checkform2() {
+    function checkform() {
         var f = document.forms["theform"].elements;
         var cansubmit = true;
 

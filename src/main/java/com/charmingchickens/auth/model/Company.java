@@ -60,4 +60,5 @@ public class Company {
     public User getCreator() { return creator; }
 
     public void setCreator(User creator) { this.creator = creator; }
+
 }

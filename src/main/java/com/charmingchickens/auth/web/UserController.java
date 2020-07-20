@@ -1,7 +1,9 @@
 package com.charmingchickens.auth.web;
 
 import com.charmingchickens.auth.model.Company;
+import com.charmingchickens.auth.model.Post;
 import com.charmingchickens.auth.service.CompanyService;
+import com.charmingchickens.auth.service.PostService;
 import com.charmingchickens.auth.service.SecurityService;
 import com.charmingchickens.auth.service.UserService;
 import com.charmingchickens.auth.validator.UserValidator;
@@ -28,6 +30,9 @@ public class UserController {
 
     @Autowired
     private CompanyService companyService;
+
+    @Autowired
+    private PostService postService;
 
     @Autowired
     private SecurityService securityService;
@@ -72,7 +77,9 @@ public class UserController {
     public String profile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
         model.addAttribute("profileForm",userService.findByUsername(name));
+        model.addAttribute("results",userService.findCompaniesByCreator(existingUser));
         return "profile";
     }
 
@@ -81,8 +88,16 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "profile";
         }
-        userService.save(profileForm);
-        return "redirect:/welcome";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        Post newPost = new Post();
+        newPost.setCreator(existingUser);
+        newPost.setMessage(profileForm.getPost());
+        postService.save(newPost);
+        model.addAttribute("results2",userService.findPostsByCreator(existingUser));
+        userService.setPost(profileForm);
+        return "redirect:/profile";
     }
 
     @RequestMapping(value = "/editProfile", method = RequestMethod.GET)
@@ -134,16 +149,19 @@ public class UserController {
         String name = auth.getName(); //get logged in username
         model.addAttribute("discoverForm",userService.findByUsername(name));
         model.addAttribute("results", userService.findCompanies(joinCompanyForm.getSearch()));
-//        userService.saveJoin(joinCompanyForm);
+        userService.saveJoin(joinCompanyForm);
         return "joinCompany";
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String post(@ModelAttribute("postForm") User postForm, BindingResult bindingResult, Model model) {
+    public String post(@ModelAttribute("postForm") Post postForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "post";
         }
-        userService.savePost(postForm);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("results", postService.findByCreator(name));
+        postService.save(postForm);
         return "redirect:/profile";
     }
 

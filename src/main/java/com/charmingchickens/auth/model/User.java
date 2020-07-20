@@ -2,6 +2,8 @@ package com.charmingchickens.auth.model;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
@@ -24,8 +26,9 @@ public class User {
     private String recurring;
     private String search;
     private String searchType;
-    private List associatedCompanies;
+    private Company company;
     private String location;
+    private String post;
 
 
     @Id
@@ -139,19 +142,24 @@ public class User {
         this.searchType = searchType;
     }
 
-    public List getAssociatedCompanies() { return associatedCompanies; }
-
-    public void setAssociatedCompanies(List associatedCompanies) {
-        this.associatedCompanies = associatedCompanies;
-    }
-
     public String getLocation() { return location; }
 
     public void setLocation(String location) {
         this.location = location;
     }
 
+    public String getPost() { return post; }
 
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+//    @ManyToOne
+//    public Company getCompany() { return company; }
+//
+//    public void setCompany(Company company) {
+//        this.company = company;
+//    }
 
 //    public Image getProfilePic() { return profilePic; }
 //

@@ -14,13 +14,21 @@ public interface UserService {
 
     void saveJoin(User user);
 
+//    void saveWorker(String name);
+
     Map<Long, String > findUsers(String name);
 
     Map<Long, String > findCompanies(String name);
 
-    void savePost(User user);
+    Map<Long,String> findCompaniesByCreator(User user);
 
-//    void saveCompany(String associatedCompany);
+//    Map<Long,String> findCompaniesByWorker(User user);
+
+    Map<Long,String> findPostsByCreator(User user);
+
+    void setPost(User user);
+
+//    List getCompanies(String associatedCompany);
 
     User findByUsername(String username);
 }
