@@ -1,6 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -14,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Profile</title>
+    <title>News</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -25,9 +24,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
-<%--<input type="hidden" id="results"/>--%>
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -48,43 +45,18 @@
         </form>
 
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['homeForm'].submit()">Home</a> | <a onclick="document.forms['profileForm'].submit()">My Profile</a>  | <a onclick="document.forms['discoverForm'].submit()">Discover</a> | <a onclick="document.forms['notificationsForm'].submit()">Notifications</a> | <a onclick="document.forms['newsForm'].submit()">News</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+
     </c:if>
 
 </div>
-<div class="container">
-
-    <form:form method="POST" modelAttribute="discoverForm" class="form-signin">
-        <h2 class="form-signin-heading">Discover</h2>
-        <spring:bind path="search">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="search" class="form-control" placeholder="Search"></form:input>
-                <form:errors path="search"></form:errors>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="searchType">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:radiobutton path="searchType" value="user"/>User
-                <form:radiobutton path="searchType" value="company"/>Company
-                <form:errors path="searchType"></form:errors>
-            </div>
-        </spring:bind>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-
-    </form:form>
-
-</div>
 <br>
-<div id="searchResults" class="container" style="padding-bottom: 15px">
-        <h2>Results:</h2>
-        <div>
-            <c:if test="${(discoverForm.search != null)}">
-                <c:forEach items="${results}" var="item">
-                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
-                </c:forEach>
-            </c:if>
-        </div>
+<div class="container">
+    <br>
+    <div id="news">
+        <br><br><h1 style="font-size: 70px; color: white; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: black; margin-left: 25px">Events</h1>
+        <h1 style="font-size: 50px; color: white; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: black; margin-left: 25px">Get active in your community, and join like-minded peers for our sponsored events. These are engineered and geared towards those who are reaching for the stars!
+        </h1>
+    </div>
 </div>
 
 <!-- /container -->

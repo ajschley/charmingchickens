@@ -175,6 +175,23 @@ public class UserController {
         return "discover";
     }
 
+    @RequestMapping(value = "/news", method = RequestMethod.GET)
+    public String news(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        model.addAttribute("newsForm",userService.findByUsername(name));
+        return "news";
+    }
+
+    @RequestMapping(value = "/news", method = RequestMethod.POST)
+    public String news(@ModelAttribute("profileForm") User newsForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "news";
+        }
+        userService.save(newsForm);
+        return "redirect:/news";
+    }
+
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         return "welcome";

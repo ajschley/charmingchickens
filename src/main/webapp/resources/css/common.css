@@ -224,6 +224,14 @@ h4 {
     text-align: center;
 }
 
+#news {
+    background-position: center;
+    height: 400px;
+    border: solid black;
+    background-image: url('https://blogs.microsoft.com/uploads/sites/134/2018/03/5Q0A1952.jpg');
+    background-repeat: no-repeat;
+    background-size: 1400px;
+}
 /*#company h3 {*/
 /*    float: left;*/
 /*}*/

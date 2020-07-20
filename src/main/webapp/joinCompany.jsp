@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Profile</title>
+    <title>Join Company</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -39,11 +39,14 @@
         <form id="discoverForm" method="GET" action="/discover">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+        <form id="newsForm" method="GET" action="/news">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['homeForm'].submit()">Home</a> | <a onclick="document.forms['profileForm'].submit()">My Profile</a>  | <a onclick="document.forms['discoverForm'].submit()">Discover</a> | <a onclick="document.forms['notificationsForm'].submit()">Notifications</a> | <a onclick="document.forms['News'].submit()">News</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['homeForm'].submit()">Home</a> | <a onclick="document.forms['profileForm'].submit()">My Profile</a>  | <a onclick="document.forms['discoverForm'].submit()">Discover</a> | <a onclick="document.forms['notificationsForm'].submit()">Notifications</a> | <a onclick="document.forms['newsForm'].submit()">News</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
     </c:if>
 
 </div>
@@ -142,14 +145,15 @@
     </form:form>
 
 </div>
-<div id="searchResults" class="container">
-    <h3>Results</h3>
+<br>
+<div id="searchResults" class="container" style="padding-bottom: 15px">
+    <h2>Results</h2>
     <div>
         <c:if test="${(joinCompanyForm.search != null)}">
             <c:forEach items="${results}" var="item">
-                <div id="company">
-                    <h3 style="border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">Join</button></h3>
-                </div>
+<%--                <div id="company">--%>
+                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">Join</button></h3>
+<%--                </div>--%>
 
             </c:forEach>
         </c:if>
