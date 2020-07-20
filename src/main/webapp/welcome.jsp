@@ -46,6 +46,7 @@
     </c:if>
 
 </div>
+<br>
 <div class="container">
     <div id="home">
         <br><br><br><br><br><br><br><br><br><br><br><h1 style="font-size: 70px; color: white; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: black; margin-left: 25px">StartUS</h1>
@@ -59,7 +60,7 @@
         <p>Our mission is to provide resources for minority owned businesses to start, and continue growing, their businesses without the worry of being discriminated against.
         </p>
     </div>
-
+    <br>
     <div id="about">
         <h2>What is StartUS?</h2>
         <div id="abouttext">
@@ -87,10 +88,9 @@
 <%--            </div>--%>
 <%--        </div>--%>
     </div>
-    <br>
     <div id="team">
         <div id teamText style="text-align: left">
-            <h2>Meet Our Team</h2>
+            ><h2>Meet Our Team</h2>
             <p>Meet our team, who are tirelessly working to bring equal opportunities to minority businesses across the United States.</p>
         </div>
 
@@ -114,6 +114,18 @@
                     <img id="tpic" src="alec-headshot.jpg" />
                     <p>Alec joined Simulating Smiles in 2020. </p>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact">
+        <div id="contactus">
+            <h2>Contact Us</h2>
+            <div id="messagebox">
+                <form name="theform">
+                    <input style="border:1px solid black" type="text" size="25" id="name" name="name" placeholder="Please Enter Your Username"><br><br>
+                    <textarea style="border:1px solid black" rows="5" cols="50" onKeyup="checkform2()"></textarea><br>
+                    <input onclick="addEmail()" id="submitbutton2" type="submit" disabled="disabled" value="Contact" />
+                </form>
             </div>
         </div>
     </div>

@@ -138,14 +138,6 @@ public class UserController {
         return "joinCompany";
     }
 
-    @RequestMapping(value = "/post", method = RequestMethod.GET)
-    public String message(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        model.addAttribute("postForm",userService.findByUsername(name));
-        return "post";
-    }
-
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String post(@ModelAttribute("postForm") User postForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {

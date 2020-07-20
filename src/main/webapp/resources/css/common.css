@@ -126,12 +126,18 @@ h3 {
 }
 
 h4 {
-    font-size: small;
+    font-size: medium;
 }
 
 #results {
     text-align: center;
     border: solid black;
+}
+
+#searchResults {
+    border-radius: 25px;
+    border: solid black;
+    background-color: white;
 }
 
 #businessInfo {
@@ -164,6 +170,7 @@ h4 {
 /*}*/
 
 #abouttext {
+    padding-right: 20px;
     width: 50%;
     float: left;
 }
@@ -177,8 +184,8 @@ h4 {
     float: right;
     border: solid black;
     border-radius: 50%;
-    width: 550px;
-    height: 550px;
+    width: 100%;
+    height: 100%;
 }
 
 /*#servtext {*/

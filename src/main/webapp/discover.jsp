@@ -44,7 +44,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['homeForm'].submit()">Home</a> | <a onclick="document.forms['profileForm'].submit()">My Profile</a>  | <a onclick="document.forms['discoverForm'].submit()">Discover</a> | <a onclick="document.forms['messageForm'].submit()">Messaging</a> | <a onclick="document.forms['notificationsForm'].submit()">Notifications</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['homeForm'].submit()">Home</a> | <a onclick="document.forms['profileForm'].submit()">My Profile</a>  | <a onclick="document.forms['discoverForm'].submit()">Discover</a> | <a onclick="document.forms['notificationsForm'].submit()">Notifications</a> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
     </c:if>
 
 </div>
@@ -72,18 +72,19 @@
     </form:form>
 
 </div>
-<div class="form-signin">
-        <h1>Results</h1>
+<br>
+<div id="searchResults" class="container" style="padding-bottom: 15px">
+        <h2>Results:</h2>
         <div>
             <c:if test="${(discoverForm.search != null)}">
                 <c:forEach items="${results}" var="item">
-                    <h3>${item.value}</h3><br>
+                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
                 </c:forEach>
             </c:if>
         </div>
 </div>
 
-<!-- /container -->Business
+<!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

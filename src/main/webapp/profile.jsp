@@ -47,28 +47,31 @@
     </c:if>
 
 </div>
+<br>
 <div class="container">
     <div id="leftSide">
 <%--        <div id="pic">--%>
 <%--            <h2>asdfasdfa</h2>--%>
 <%--        </div>--%>
         <br>
+        <div id="name">
+            <h1>${profileForm.name}</h1>
+        </div>
+        <div id="email">
+            <h3>${profileForm.email}</h3>
+        </div>
+        <br>
         <div id="profileAbout">
-            <div id="name">
-                <h1>${profileForm.name}</h1>
-            </div>
-            <div id="email">
-                <h3>${profileForm.email}</h3>
-            </div>
             <div id="about">
-                <h4>${profileForm.about}</h4>
+                <h3 style="text-align: left; margin-left: 10px">Bio:</h3>
+                <h4 style="text-align: left; margin-left: 10px">${profileForm.about}</h4>
             </div>
         </div>
     <br>
         <div id="officeHours">
-            <h2>Office Hours: ${profileForm.recurring}</h2>
-            <h3>Start: ${profileForm.from1}:${profileForm.from2}</h3>
-            <h3>End: ${profileForm.to1}:${profileForm.to2}</h3>
+            <h3 style="text-align: left; margin-left: 10px">Office Hours: ${profileForm.recurring}</h3>
+            <h4>Start: ${profileForm.from1}:${profileForm.from2}</h4>
+            <h4>End: ${profileForm.to1}:${profileForm.to2}</h4>
         </div>
     <br>
         <div id="edit">
@@ -88,14 +91,13 @@
     </div>
     <div id="rightSide">
         <div id="businessTitle">
-            <h2>Associated Businesses</h2>
+            <br>
+            <h1>Companies</h1>
+            <br>
         </div>
         <div id="businessInfo">
-            <div id="business">
-                <h2>Business</h2>
-            </div>
             <div id="businesses">
-                <h3>Business<button type="submit">View</button></h3>
+                <h3 style="text-align: left; padding-bottom: 10px; margin-left: 10px">Business<button type="submit" style="float:right; margin-right: 10px">View</button></h3>
             </div>
         </div>
         <br>
@@ -117,10 +119,10 @@
         <h1 style="text-align: left; margin-left: 25px">Your Wall</h1>
         <div id="post" style="text-align: left; margin-left: 25px">
             <form name="theform">
-                <textarea style="border:1px solid black" rows="5" cols="63" placeholder="Leave a post..." onKeyup="checkform2()"></textarea>
+                <textarea id="p" style="border:1px solid black" rows="5" cols="63" placeholder="Leave a post..." onKeyup="checkform2()"></textarea>
             </form>
             <form action="/post" method="post">
-                <button type="submit">Post</button>
+                <input onclick="addPost(p.valueOf())" id="submitbutton2" type="submit" disabled="disabled" value="Post" />
             </form>
         </div>
         <div id="pastPosts">
@@ -132,5 +134,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
+<script>
+    function checkform2() {
+        var f = document.forms["theform"].elements;
+        var cansubmit = true;
+
+        for (var i = 0; i < f.length; i++) {
+            if (f[i].value.length == 0) cansubmit = false;
+        }
+        document.getElementById('submitbutton2').disabled = !cansubmit;
+    }
+    function addPost(post) {
+        document.forms["postForm"].setAttribute("post", post);
+    }
+</script>
 </html>
 

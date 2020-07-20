@@ -142,13 +142,13 @@
     </form:form>
 
 </div>
-<div id="companies" class="form-signin">
-    <h1>Results</h1>
+<div id="searchResults" class="container">
+    <h3>Results</h3>
     <div>
         <c:if test="${(joinCompanyForm.search != null)}">
             <c:forEach items="${results}" var="item">
                 <div id="company">
-                    <h3>${item.value}<button type="submit">Join</button><br>
+                    <h3 style="border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">Join</button></h3>
                 </div>
 
             </c:forEach>
