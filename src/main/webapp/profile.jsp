@@ -47,7 +47,7 @@
     </c:if>
 
 </div>
-<div class="container" id="profileInfo">
+<div class="container">
     <div id="leftSide">
 <%--        <div id="pic">--%>
 <%--            <h2>asdfasdfa</h2>--%>
@@ -114,21 +114,11 @@
         <br>
     </div>
     <div id="middle" >
-        <h1>Your Wall</h1>
-        <div id="post">
-            <label for="leavePost">Leave a post...</label>
-            <input type="text" id="leavePost">
-<%--            <form:form method="POST" modelAttribute="postForm" class="form-signin">--%>
-<%--                <h2 class="form-signin-heading">Profile</h2>--%>
-
-<%--                <spring:bind path="message">--%>
-<%--                    <div class="form-group ${status.error ? 'has-error' : ''}">--%>
-<%--                        <form:input type="text" path="message" class="form-control" placeholder="Please leave a post..."--%>
-<%--                                    autofocus="true"></form:input>--%>
-<%--                        <form:errors path="message"></form:errors>--%>
-<%--                    </div>--%>
-<%--                </spring:bind>--%>
-<%--            </form:form>--%>
+        <h1 style="text-align: left; margin-left: 25px">Your Wall</h1>
+        <div id="post" style="text-align: left; margin-left: 25px">
+            <form name="theform">
+                <textarea style="border:1px solid black" rows="5" cols="63" placeholder="Leave a post..." onKeyup="checkform2()"></textarea>
+            </form>
             <form action="/post" method="post">
                 <button type="submit">Post</button>
             </form>
