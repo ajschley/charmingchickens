@@ -80,6 +80,7 @@ public class UserController {
         User existingUser = userService.findByUsername(name);
         model.addAttribute("profileForm",userService.findByUsername(name));
         model.addAttribute("results",userService.findCompaniesByCreator(existingUser));
+        model.addAttribute("results2",userService.findPostsByCreator(existingUser));
         return "profile";
     }
 

@@ -153,11 +153,15 @@ public class UserServiceImpl implements UserService {
 
     public Map<Long,String> findPostsByCreator(User user) {
         List<Post> results = postRepository.findAll();
+        Collections.reverse(results);
         Map<Long, String> matches = new HashMap<>();
         String userName = user.getUsername();
+        long num=0;
         for (Post u: results) {
             String userName2 = u.getCreator().getUsername();
             if (userName2.equals(userName)) {
+                u.setId(num);
+                num++;
                 matches.put(u.getId(), u.getMessage());
             }
         }
