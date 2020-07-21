@@ -2,7 +2,10 @@ package com.charmingchickens.auth.model;
 
 import javax.persistence.*;
 import java.awt.*;
+import java.io.File;
 import java.lang.reflect.Array;
+import java.net.URL;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -17,7 +20,7 @@ public class User {
     private String message;
     private String name;
     private String about;
-    private Image profilePic;
+    private URL profilePic;
     private String email;
     private String from1;
     private String from2;
@@ -29,6 +32,7 @@ public class User {
     private Company company;
     private String location;
     private String post;
+    private Set<User> connections;
 
 
     @Id
@@ -153,6 +157,20 @@ public class User {
     public void setPost(String post) {
         this.post = post;
     }
+
+    public URL getProfilePic() { return profilePic; }
+
+    public void setProfilePic(URL profilePic) {
+        this.profilePic = profilePic;
+    }
+
+//    @ManyToMany
+//    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+//    public Set<User> getConnections() { return connections; }
+//
+//    public void setConnections(Set<User> connections) {
+//        this.connections = connections;
+//    }
 
 //    @ManyToOne
 //    public Company getCompany() { return company; }

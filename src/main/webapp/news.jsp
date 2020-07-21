@@ -51,7 +51,7 @@
 </div>
 <br>
 <div class="container">
-    <br>
+
     <div id="news-section">
         <div id="news-title">
             <br><br><h1 style="margin-left: 25px; font-size: 70px; text-align: left">Events</h1>
@@ -85,7 +85,7 @@
                 </div>
                 <div id="event2pic">
                     <div>
-                        <img id="e2pic" src="commons_pic_1.jpg">
+                        <img id="e2pic" src="commons_pic_4.jpg">
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 </div>
                 <div id="event3pic">
                     <div>
-                        <img id="e3pic" src="commons_pic_1.jpg">
+                        <img id="e3pic" src="commons_pic_5.jpg">
                     </div>
                 </div>
             </div>

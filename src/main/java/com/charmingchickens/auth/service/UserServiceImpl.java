@@ -99,6 +99,21 @@ public class UserServiceImpl implements UserService {
         return matches;
     }
 
+//    public void saveConnections(User user) {
+////        Set<User> u = new HashSet<>();
+//        user.getConnections().add(user);
+//        userRepository.save(user);
+//    }
+//
+//    public Map<Long,String> findConnections(User user) {
+//        Map<Long, String> matches = new HashMap<>();
+//        Set<User> users = user.getConnections();
+//        for (User u: users) {
+//            matches.put(u.getId(), u.getName());
+//        }
+//        return matches;
+//    }
+
     public Map<Long,String> findCompanies(String name) {
         List<Company> results = companyRepository.findAll();
         Map<Long, String> matches = new HashMap<>();

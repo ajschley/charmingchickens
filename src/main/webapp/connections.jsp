@@ -51,50 +51,15 @@
     </c:if>
 
 </div>
-<div class="container">
-
-    <form:form method="POST" modelAttribute="discoverForm" class="form-signin">
-        <h2 class="form-signin-heading">Discover</h2>
-        <spring:bind path="search">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="search" class="form-control" placeholder="Search"></form:input>
-                <form:errors path="search"></form:errors>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="searchType">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:radiobutton path="searchType" value="user"/>User
-                <form:radiobutton path="searchType" value="company"/>Company
-                <form:errors path="searchType"></form:errors>
-            </div>
-        </spring:bind>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-
-    </form:form>
-
-</div>
-<br>
-<div id="searchResults" class="container" style="padding-bottom: 15px">
-        <h2>Results:</h2>
-        <div>
-            <c:if test="${(discoverForm.search != null)}">
-                <c:forEach items="${results}" var="item">
-                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
-                        <c:if test="${(discoverForm.search != null)}">
-                            <form action="/connections" method="post">
-                                <input style="float: right" type="submit" value="Connect">
-                            </form>
-                            <form action="/connections">
-                                <input style="float: right" type="submit" value="View">
-                            </form>
-<%--                            <button style="float: right" type="submit">Connect</button>--%>
-                        </c:if></h3>
-<%--                        <button style="float: right" type="submit">View</button></h3>--%>
-                </c:forEach>
-            </c:if>
-        </div>
+<div id="connections" class="container" style="padding-bottom: 15px">
+    <h2>Connections:</h2>
+    <div>
+        <c:if test="${(discoverForm.search != null)}">
+            <c:forEach items="${results}" var="item">
+                <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
+            </c:forEach>
+        </c:if>
+    </div>
 </div>
 
 <!-- /container -->

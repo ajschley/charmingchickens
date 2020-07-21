@@ -53,7 +53,7 @@
 <div class="container">
 
     <form:form method="POST" modelAttribute="joinCompanyForm" class="form-signin">
-        <h2 class="form-signin-heading">Profile</h2>
+        <h2 class="form-signin-heading">Join Company</h2>
         <spring:bind path="search">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="search" class="form-control" placeholder="Business Name"

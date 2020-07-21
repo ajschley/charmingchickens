@@ -53,7 +53,7 @@
 <div class="container">
 
     <form:form method="POST" modelAttribute="editForm" class="form-signin">
-        <h2 class="form-signin-heading">Profile</h2>
+        <h2 class="form-signin-heading">Edit Profile</h2>
         <spring:bind path="name">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="name" class="form-control" placeholder="Please enter your full name"
@@ -73,8 +73,7 @@
 
         <spring:bind path="about">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="about" class="form-control" placeholder="Tell us about yourself"
-                            autofocus="true"></form:input>
+                <form:textarea rows="5" cssStyle="width: 100%; text-align: left" type="text" path="about" class="form-control" placeholder="Tell us about yourself..."></form:textarea>
                 <form:errors path="about"></form:errors>
             </div>
         </spring:bind>

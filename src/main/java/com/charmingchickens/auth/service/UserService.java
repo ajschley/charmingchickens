@@ -16,6 +16,10 @@ public interface UserService {
 
 //    void saveWorker(String name);
 
+//    void saveConnections(User user);
+//
+//    Map<Long,String> findConnections(User user);
+
     Map<Long, String > findUsers(String name);
 
     Map<Long, String > findCompanies(String name);

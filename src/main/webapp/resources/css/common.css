@@ -134,8 +134,32 @@ h7 {
     background-size: 1400px;
 }
 
-#about {
-    height: 610px;
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+
+#profilePic-container {
+    border: solid gray;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+#profilePic-container img {
+    width: 150px;
+    height: 150px;
 }
 
 #event1 {

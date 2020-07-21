@@ -23,6 +23,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <![endif]-->
 </head>
 
@@ -57,6 +58,12 @@
 <%--            <h2>asdfasdfa</h2>--%>
 <%--        </div>--%>
         <br>
+        <div id="profilePic-container">
+            <image id="profileImage" src="commons_pic_3.jpeg" />
+
+<%--            <input id="imageProfile" type="file" name="profile_photo" placeholder="Photo" required="" capture>--%>
+        </div>
+        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
         <div id="name">
             <h1>${profileForm.name}</h1>
         </div>
@@ -67,7 +74,7 @@
         <div id="profileAbout">
             <div id="about">
                 <h3 style="text-align: left; margin-left: 10px"><u>Bio:</u></h3>
-                <h4 style="text-align: left; margin-left: 10px">${profileForm.about}</h4>
+                <h4 style="text-align: left; margin-left: 10px">${profileForm.about.trim()}</h4>
             </div>
         </div>
     <br>
@@ -128,7 +135,7 @@
                 <h1 class="form-signin-heading"><u>Your Wall</u></h1>
                 <spring:bind path="post">
                     <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:textarea rows="5" cssStyle="width: 95%; text-align: left" type="text" path="post" class="form-control" placeholder="Leave a post..."></form:textarea>
+                        <form:textarea rows="5" cssStyle="font-size: medium; width: 95%; text-align: left" type="text" path="post" class="form-control" placeholder="Leave a post..."></form:textarea>
                         <form:errors path="post"></form:errors>
                     </div>
                 </spring:bind>
@@ -148,7 +155,7 @@
             <h1 class="form-signin-heading" style="text-align: left; margin-left: 25px"><u>Past Activity</u></h1>
                 <c:forEach items="${results2}" var="item">
                     <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="posts">
-                        <h7 style="text-align: left; margin-left: 10px">${item.value}</h7>
+                        <h4 style="text-align: left; margin-left: 10px; padding-bottom: 30px">${item.value}</h4>
                     </div><br>
                 </c:forEach>
         </div>
@@ -159,18 +166,23 @@
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 <script>
-    function checkform() {
-        var f = document.forms["theform"].elements;
-        var cansubmit = true;
+    $("#profileImage").click(function(e) {
+        $("#imageUpload").click();
+    });
 
-        for (var i = 0; i < f.length; i++) {
-            if (f[i].value.length == 0) cansubmit = false;
+    function fasterPreview( uploader ) {
+        if ( uploader.files && uploader.files[0] ){
+            $('#profileImage').attr('src',
+                window.URL.createObjectURL(uploader.files[0]) );
+<%--            ${profileForm.profilePic} = $('#profileImage').src.valueOf();--%>
+                ${profileForm.profilePic} = new URL(window.URL.createObjectURL(uploader.files[0]) );
         }
-        document.getElementById('submitbutton2').disabled = !cansubmit;
     }
-    function addPost(post) {
-        document.forms["postForm"].setAttribute("post", post);
-    }
+
+    $("#imageUpload").change(function(){
+        fasterPreview( this );
+    });
+
 </script>
 </html>
 
