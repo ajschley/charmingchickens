@@ -151,7 +151,7 @@
     <div>
         <c:if test="${(joinCompanyForm.search != null)}">
             <c:forEach items="${results}" var="item">
-                <form:form method="POST" class="form-signin" action="/joinCo/${item.key}" >
+                <form:form method="POST" action="/joinCo/${item.key}" >
                 <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
                     <button style="float: right" type="submit">Join</button></h3>
                 </form:form>

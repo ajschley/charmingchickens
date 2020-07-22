@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,12 +35,18 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Map<Long, String> findByCreator(String name) {
+    public Map<Long, String> findByCreator(User user) {
             List<Post> results = postRepository.findAll();
+            Collections.reverse(results);
             Map<Long, String> matches = new HashMap<>();
-            for (Post p: results) {
-                if (p.getCreator().equals(name)) {
-                    matches.put(p.getId(), p.getMessage());
+            String userName = user.getUsername();
+            long num=0;
+            for (Post u: results) {
+                String userName2 = u.getCreator().getUsername();
+                if (userName2.equals(userName)) {
+                    u.setId(num);
+                    num++;
+                    matches.put(u.getId(), u.getMessage());
                 }
             }
             return matches;

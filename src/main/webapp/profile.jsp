@@ -54,14 +54,14 @@
 <br>
 <div class="container">
     <div id="leftSide">
-<%--        <div id="pic">--%>
-<%--            <h2>asdfasdfa</h2>--%>
-<%--        </div>--%>
+        <%--        <div id="pic">--%>
+        <%--            <h2>asdfasdfa</h2>--%>
+        <%--        </div>--%>
         <br>
         <div id="profilePic-container">
             <image id="profileImage" src="commons_pic_3.jpeg" />
 
-<%--            <input id="imageProfile" type="file" name="profile_photo" placeholder="Photo" required="" capture>--%>
+            <%--            <input id="imageProfile" type="file" name="profile_photo" placeholder="Photo" required="" capture>--%>
         </div>
         <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
         <div id="name">
@@ -77,17 +77,17 @@
                 <h4 style="text-align: left; margin-left: 10px">${profileForm.about.trim()}</h4>
             </div>
         </div>
-    <br>
+        <br>
         <div id="officeHours">
             <h3 style="text-align: left; margin-left: 10px"><u>Office Hours: ${profileForm.recurring}</u></h3>
             <h4>Start: ${profileForm.from1}:${profileForm.from2} | End: ${profileForm.to1}:${profileForm.to2}</h4>
         </div>
-    <br>
+        <br>
         <div id="edit">
             <form action="/editProfile" method="get">
                 <button class="profileButton" type="submit">Edit Profile</button>
             </form>
-<%--            <button type="button" id="editButton">Edit Profile</button>--%>
+            <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
         <br>
         <div id="connections">
@@ -101,16 +101,16 @@
     <div id="rightSide">
         <div id="businessTitle">
             <br>
-            <h1>Companies</h1>
+            <h1>My Companies</h1>
             <br>
         </div>
         <div id="businessInfo">
-                <c:forEach items="${results}" var="item">
-                    <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
-                </c:forEach>
-                <c:forEach items="${results2}" var="item">
-                    <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
-                </c:forEach>
+            <c:forEach items="${results}" var="item">
+                <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+            </c:forEach>
+            <c:forEach items="${results2}" var="item">
+                <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+            </c:forEach>
 
         </div>
         <br>
@@ -143,21 +143,21 @@
                 <button style="text-align: left" type="submit">Post</button>
 
             </form:form>
-<%--            <form name="theform">--%>
-<%--                <textarea id="p" style="border:1px solid black" rows="5" cols="57" placeholder="Leave a post..." onKeyup="checkform()"></textarea>--%>
-<%--            </form>--%>
-<%--            <form action="/post" method="post">--%>
-<%--                <input id="submitbutton2" type="submit" disabled="disabled" value="Post" />--%>
-<%--            </form>--%>
+            <%--            <form name="theform">--%>
+            <%--                <textarea id="p" style="border:1px solid black" rows="5" cols="57" placeholder="Leave a post..." onKeyup="checkform()"></textarea>--%>
+            <%--            </form>--%>
+            <%--            <form action="/post" method="post">--%>
+            <%--                <input id="submitbutton2" type="submit" disabled="disabled" value="Post" />--%>
+            <%--            </form>--%>
         </div>
         <br>
         <div id="pastPosts" >
             <h1 class="form-signin-heading" style="text-align: left; margin-left: 25px"><u>Past Activity</u></h1>
-                <c:forEach items="${results2}" var="item">
-                    <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="posts">
-                        <h4 style="text-align: left; margin-left: 10px; padding-bottom: 30px">${item.value}</h4>
-                    </div><br>
-                </c:forEach>
+            <c:forEach items="${results3}" var="item">
+                <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="posts">
+                    <h4 style="text-align: left; margin-left: 10px; padding-bottom: 30px">${item.value}</h4>
+                </div><br>
+            </c:forEach>
         </div>
     </div>
 </div>
@@ -169,20 +169,16 @@
     $("#profileImage").click(function(e) {
         $("#imageUpload").click();
     });
-
     function fasterPreview( uploader ) {
         if ( uploader.files && uploader.files[0] ){
             $('#profileImage').attr('src',
                 window.URL.createObjectURL(uploader.files[0]) );
-<%--            ${profileForm.profilePic} = $('#profileImage').src.valueOf();--%>
-                ${profileForm.profilePic} = new URL(window.URL.createObjectURL(uploader.files[0]) );
         }
     }
-
     $("#imageUpload").change(function(){
         fasterPreview( this );
     });
-
 </script>
 </html>
+
 

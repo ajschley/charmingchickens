@@ -82,6 +82,7 @@ public class UserController {
         results.putAll(userService.findCompaniesByCreator(existingUser));
         results.putAll(userService.findCompaniesByEmployee(existingUser));
         model.addAttribute("results2",results);
+        model.addAttribute("results3",postService.findByCreator(existingUser));
         return "profile";
     }
 
@@ -100,8 +101,8 @@ public class UserController {
         Map<Long, String> results = new HashMap<>();
         results.putAll(userService.findCompaniesByCreator(existingUser));
         results.putAll(userService.findCompaniesByEmployee(existingUser));
-//        model.addAttribute("results",results);
         model.addAttribute("results2",results);
+        model.addAttribute("results3",postService.findByCreator(existingUser));
         userService.setPost(profileForm);
         return "redirect:/profile";
     }
@@ -184,7 +185,8 @@ public class UserController {
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
-        model.addAttribute("results", postService.findByCreator(name));
+        User existingUser = userService.findByUsername(name);
+        model.addAttribute("results", postService.findByCreator(existingUser));
         postService.save(postForm);
         return "redirect:/profile";
     }
