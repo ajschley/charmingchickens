@@ -151,9 +151,11 @@
     <div>
         <c:if test="${(joinCompanyForm.search != null)}">
             <c:forEach items="${results}" var="item">
-<%--                <div id="company">--%>
-                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">Join</button></h3>
-<%--                </div>--%>
+                <form:form method="POST" action="/joinCo/${item.key}" >
+                <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
+                    <button style="float: right" type="submit">Join</button></h3>
+                </form:form>
+
             </c:forEach>
         </c:if>
     </div>

@@ -2,7 +2,10 @@ package com.charmingchickens.auth.web;
 
 import com.charmingchickens.auth.model.Company;
 import com.charmingchickens.auth.model.Post;
-import com.charmingchickens.auth.service.*;
+import com.charmingchickens.auth.service.CompanyService;
+import com.charmingchickens.auth.service.PostService;
+import com.charmingchickens.auth.service.SecurityService;
+import com.charmingchickens.auth.service.UserService;
 import com.charmingchickens.auth.validator.UserValidator;
 import com.charmingchickens.auth.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -25,9 +32,6 @@ public class UserController {
 
     @Autowired
     private PostService postService;
-
-    @Autowired
-    private ConnectionService connectionService;
 
     @Autowired
     private SecurityService securityService;
@@ -74,8 +78,11 @@ public class UserController {
         String name = auth.getName(); //get logged in username
         User existingUser = userService.findByUsername(name);
         model.addAttribute("profileForm",userService.findByUsername(name));
-        model.addAttribute("results",userService.findCompaniesByCreator(existingUser));
-        model.addAttribute("results2",userService.findPostsByCreator(existingUser));
+        Map<Long, String> results = new HashMap<>();
+        results.putAll(userService.findCompaniesByCreator(existingUser));
+        results.putAll(userService.findCompaniesByEmployee(existingUser));
+        model.addAttribute("results2",results);
+        model.addAttribute("results3",postService.findByCreator(existingUser));
         return "profile";
     }
 
@@ -91,7 +98,11 @@ public class UserController {
         newPost.setCreator(existingUser);
         newPost.setMessage(profileForm.getPost());
         postService.save(newPost);
-        model.addAttribute("results2",userService.findPostsByCreator(existingUser));
+        Map<Long, String> results = new HashMap<>();
+        results.putAll(userService.findCompaniesByCreator(existingUser));
+        results.putAll(userService.findCompaniesByEmployee(existingUser));
+        model.addAttribute("results2",results);
+        model.addAttribute("results3",postService.findByCreator(existingUser));
         userService.setPost(profileForm);
         return "redirect:/profile";
     }
@@ -128,6 +139,24 @@ public class UserController {
         return "redirect:/profile";
     }
 
+    @RequestMapping(value = "/joinCo/{company_id}", method = RequestMethod.POST)
+    public String joinCo(@PathVariable Long company_id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+
+        User existingUser = userService.findByUsername(name);
+        Company c = companyService.findById(company_id);
+
+        Set<User> emps = c.getEmployees();
+        emps.add(existingUser);
+        c.setEmployees(emps);
+        companyService.update(c);
+
+        return "redirect:/profile";
+    }
+
+
+
     @RequestMapping(value = "/joinCompany", method = RequestMethod.GET)
     public String joinCompany(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -156,31 +185,10 @@ public class UserController {
         }
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
-        model.addAttribute("results", postService.findByCreator(name));
+        User existingUser = userService.findByUsername(name);
+        model.addAttribute("results", postService.findByCreator(existingUser));
         postService.save(postForm);
         return "redirect:/profile";
-    }
-
-    @RequestMapping(value = "/connections", method = RequestMethod.GET)
-    public String connections(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        User existingUser = userService.findByUsername(name);
-        model.addAttribute("connectionsForm",connectionService.findByUser(existingUser));
-        return "connections";
-    }
-
-    @RequestMapping(value = "/connections", method = RequestMethod.POST)
-    public String connections(@ModelAttribute("postForm") Connection connectionsForm, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "connections";
-        }
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        User existingUser = userService.findByUsername(name);
-        model.addAttribute("results", connectionService.findByUser(existingUser));
-        connectionService.save(connectionsForm);
-        return "redirect:/connections";
     }
 
     @RequestMapping(value = "/discover", method = RequestMethod.GET)

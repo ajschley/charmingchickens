@@ -91,7 +91,7 @@
         </div>
         <br>
         <div id="connections">
-            <form action="/connections" method="get">
+            <form action="/editProfile" method="get">
                 <button class="profileButton" type="submit">My Connections</button>
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
@@ -101,16 +101,17 @@
     <div id="rightSide">
         <div id="businessTitle">
             <br>
-            <h1>Companies</h1>
+            <h1>My Companies</h1>
             <br>
         </div>
         <div id="businessInfo">
             <c:forEach items="${results}" var="item">
-                <c:if test="${item.key == 1}">
-                    <h4 style="height: 50px;margin: auto;text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
-                </c:if>
-                <h4 style="height:50px;margin: auto;padding-top: 5px; border-top: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+                <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
             </c:forEach>
+            <c:forEach items="${results2}" var="item">
+                <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+            </c:forEach>
+
         </div>
         <br>
         <div id="createCompany">
@@ -152,7 +153,7 @@
         <br>
         <div id="pastPosts" >
             <h1 class="form-signin-heading" style="text-align: left; margin-left: 25px"><u>Past Activity</u></h1>
-            <c:forEach items="${results2}" var="item">
+            <c:forEach items="${results3}" var="item">
                 <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="posts">
                     <h4 style="text-align: left; margin-left: 10px; padding-bottom: 30px">${item.value}</h4>
                 </div><br>
@@ -172,8 +173,6 @@
         if ( uploader.files && uploader.files[0] ){
             $('#profileImage').attr('src',
                 window.URL.createObjectURL(uploader.files[0]) );
-            <%--            ${profileForm.profilePic} = $('#profileImage').src.valueOf();--%>
-            ${profileForm.profilePic} = new URL(window.URL.createObjectURL(uploader.files[0]) );
         }
     }
     $("#imageUpload").change(function(){

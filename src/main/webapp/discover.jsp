@@ -64,7 +64,7 @@
 
         <spring:bind path="searchType">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:radiobutton path="searchType" value="user"/>User
+                <form:radiobutton path="searchType" value="user" checked="checked"/>User
                 <form:radiobutton path="searchType" value="company"/>Company
                 <form:errors path="searchType"></form:errors>
             </div>

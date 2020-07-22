@@ -25,7 +25,7 @@ public class Company {
         this.id = id;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name = "company_role", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
@@ -33,6 +33,16 @@ public class Company {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name = "company_employees", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    public Set<User> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<User> employees) {
+        this.employees = employees;
     }
 
     public String getBusinessName() {
@@ -62,9 +72,5 @@ public class Company {
 
     public void setCreator(User creator) { this.creator = creator; }
 
-    @ManyToMany
-    @JoinTable(name = "company_employees", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
-    public Set<User> getEmployees() { return employees;     }
-    public void setEmployees(Set<User> employees) { this.employees = employees;     }
 
 }
