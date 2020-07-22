@@ -54,7 +54,7 @@
 <div id="connections" class="container" style="padding-bottom: 15px">
     <h2>Connections:</h2>
     <div>
-        <c:if test="${(discoverForm.search != null)}">
+        <c:if test="${(results != null)}">
             <c:forEach items="${results}" var="item">
                 <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
             </c:forEach>

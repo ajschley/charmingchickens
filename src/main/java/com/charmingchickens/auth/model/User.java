@@ -32,7 +32,7 @@ public class User {
     private Company company;
     private String location;
     private String post;
-    private Set<User> connections;
+    private Set<User> employees;
 
 
     @Id
@@ -164,6 +164,7 @@ public class User {
         this.profilePic = profilePic;
     }
 
+//
 //    @ManyToMany
 //    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 //    public Set<User> getConnections() { return connections; }

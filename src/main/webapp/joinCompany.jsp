@@ -154,7 +154,6 @@
 <%--                <div id="company">--%>
                     <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">Join</button></h3>
 <%--                </div>--%>
-
             </c:forEach>
         </c:if>
     </div>

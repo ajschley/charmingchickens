@@ -82,8 +82,10 @@
             <c:if test="${(discoverForm.search != null)}">
                 <c:forEach items="${results}" var="item">
                     <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
-                        <c:if test="${(discoverForm.search != null)}">
+                        <c:if test="${(discoverForm.search != null) && !((discoverForm.username).equals(item.value))}">
                             <form action="/connections" method="post">
+                                <input type="hidden" name="user1" value="${discoverForm}">
+                                <input type="hidden" name="user2" value="${item.value}">
                                 <input style="float: right" type="submit" value="Connect">
                             </form>
                             <form action="/connections">

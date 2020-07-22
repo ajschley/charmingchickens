@@ -91,7 +91,7 @@
         </div>
         <br>
         <div id="connections">
-            <form action="/editProfile" method="get">
+            <form action="/connections" method="get">
                 <button class="profileButton" type="submit">My Connections</button>
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>

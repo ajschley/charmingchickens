@@ -13,6 +13,7 @@ public class Company {
     private String businessType;
     private String location;
     private User creator;
+    private Set<User> employees;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,5 +61,10 @@ public class Company {
     public User getCreator() { return creator; }
 
     public void setCreator(User creator) { this.creator = creator; }
+
+    @ManyToMany
+    @JoinTable(name = "company_employees", joinColumns = @JoinColumn(name = "company_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    public Set<User> getEmployees() { return employees;     }
+    public void setEmployees(Set<User> employees) { this.employees = employees;     }
 
 }

@@ -73,9 +73,9 @@ public class UserServiceImpl implements UserService {
         String name = auth.getName();
         User existingUser = findByUsername(name);
         existingUser.setSearch(user.getSearch());
-
         existingUser.setSearchType(user.getSearchType());
         existingUser.setLocation(user.getLocation());
+
         userRepository.save(existingUser);
     }
 

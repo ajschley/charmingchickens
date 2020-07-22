@@ -2,10 +2,7 @@ package com.charmingchickens.auth.web;
 
 import com.charmingchickens.auth.model.Company;
 import com.charmingchickens.auth.model.Post;
-import com.charmingchickens.auth.service.CompanyService;
-import com.charmingchickens.auth.service.PostService;
-import com.charmingchickens.auth.service.SecurityService;
-import com.charmingchickens.auth.service.UserService;
+import com.charmingchickens.auth.service.*;
 import com.charmingchickens.auth.validator.UserValidator;
 import com.charmingchickens.auth.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 @Controller
 public class UserController {
     @Autowired
@@ -33,6 +25,9 @@ public class UserController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private ConnectionService connectionService;
 
     @Autowired
     private SecurityService securityService;
@@ -164,6 +159,28 @@ public class UserController {
         model.addAttribute("results", postService.findByCreator(name));
         postService.save(postForm);
         return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/connections", method = RequestMethod.GET)
+    public String connections(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        model.addAttribute("connectionsForm",connectionService.findByUser(existingUser));
+        return "connections";
+    }
+
+    @RequestMapping(value = "/connections", method = RequestMethod.POST)
+    public String connections(@ModelAttribute("postForm") Connection connectionsForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "connections";
+        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        model.addAttribute("results", connectionService.findByUser(existingUser));
+        connectionService.save(connectionsForm);
+        return "redirect:/connections";
     }
 
     @RequestMapping(value = "/discover", method = RequestMethod.GET)
