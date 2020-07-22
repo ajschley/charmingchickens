@@ -76,6 +76,7 @@ public class UserServiceImpl implements UserService {
 
         existingUser.setSearchType(user.getSearchType());
         existingUser.setLocation(user.getLocation());
+//        Company c = companyRepository.find
         userRepository.save(existingUser);
     }
 
@@ -129,10 +130,27 @@ public class UserServiceImpl implements UserService {
         List<Company> results = companyRepository.findAll();
         Map<Long, String> matches = new HashMap<>();
         String userName = user.getUsername();
-        for (Company u: results) {
-            String userName2 = u.getCreator().getUsername();
-            if (userName2.equals(userName)) {
-                matches.put(u.getId(), u.getBusinessName());
+        if (results != null) {
+            for (Company u : results) {
+                String userName2 = u.getCreator().getUsername();
+                if (userName2.equals(userName)) {
+                    matches.put(u.getId(), u.getBusinessName());
+                }
+            }
+        }
+        return matches;
+    }
+
+    public Map<Long,String> findCompaniesByEmployee(User user) {
+        List<Company> results = companyRepository.findAll();
+        Map<Long, String> matches = new HashMap<>();
+        if (results != null) {
+            for (Company c : results) {
+                for (User u : c.getEmployees()) {
+                    if(u.getUsername().equals(user.getUsername())) {
+                        matches.put(c.getId(), c.getBusinessName());
+                    }
+                }
             }
         }
         return matches;

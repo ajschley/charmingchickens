@@ -14,14 +14,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -79,7 +78,10 @@ public class UserController {
         String name = auth.getName(); //get logged in username
         User existingUser = userService.findByUsername(name);
         model.addAttribute("profileForm",userService.findByUsername(name));
-        model.addAttribute("results",userService.findCompaniesByCreator(existingUser));
+        Map<Long, String> results = new HashMap<>();
+        results.putAll(userService.findCompaniesByCreator(existingUser));
+        results.putAll(userService.findCompaniesByEmployee(existingUser));
+        model.addAttribute("results2",results);
         return "profile";
     }
 
@@ -95,7 +97,11 @@ public class UserController {
         newPost.setCreator(existingUser);
         newPost.setMessage(profileForm.getPost());
         postService.save(newPost);
-        model.addAttribute("results2",userService.findPostsByCreator(existingUser));
+        Map<Long, String> results = new HashMap<>();
+        results.putAll(userService.findCompaniesByCreator(existingUser));
+        results.putAll(userService.findCompaniesByEmployee(existingUser));
+//        model.addAttribute("results",results);
+        model.addAttribute("results2",results);
         userService.setPost(profileForm);
         return "redirect:/profile";
     }
@@ -131,6 +137,24 @@ public class UserController {
         companyService.save(createCompanyForm);
         return "redirect:/profile";
     }
+
+    @RequestMapping(value = "/joinCo/{company_id}", method = RequestMethod.POST)
+    public String joinCo(@PathVariable Long company_id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+
+        User existingUser = userService.findByUsername(name);
+        Company c = companyService.findById(company_id);
+
+        Set<User> emps = c.getEmployees();
+        emps.add(existingUser);
+        c.setEmployees(emps);
+        companyService.update(c);
+
+        return "redirect:/profile";
+    }
+
+
 
     @RequestMapping(value = "/joinCompany", method = RequestMethod.GET)
     public String joinCompany(Model model) {

@@ -25,6 +25,7 @@ public interface UserService {
     Map<Long, String > findCompanies(String name);
 
     Map<Long,String> findCompaniesByCreator(User user);
+    Map<Long,String> findCompaniesByEmployee(User user);
 
 //    Map<Long,String> findCompaniesByWorker(User user);
 
