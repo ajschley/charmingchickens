@@ -98,6 +98,7 @@
         </div>
         <br>
     </div>
+
     <div id="rightSide">
         <div id="businessTitle">
             <br>
