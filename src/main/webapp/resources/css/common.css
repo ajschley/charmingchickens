@@ -118,6 +118,12 @@ h7 {
     background-color: white;
 }
 
+#myconnections {
+    border-radius: 25px;
+    border: solid black;
+    background-color: white;
+}
+
 #businessInfo {
     margin:0 auto;
     width: 82%;

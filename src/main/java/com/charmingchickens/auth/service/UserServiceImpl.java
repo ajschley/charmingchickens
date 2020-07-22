@@ -36,6 +36,10 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    public void update(User user) {
+        userRepository.save(user);
+    }
+
     @Override
     public void saveProfile(User user) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -76,18 +80,17 @@ public class UserServiceImpl implements UserService {
 
         existingUser.setSearchType(user.getSearchType());
         existingUser.setLocation(user.getLocation());
-//        Company c = companyRepository.find
         userRepository.save(existingUser);
     }
 
-//    public void saveWorker(String name) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String n = auth.getName();
-//        User existingUser = findByUsername(n);
-//        Company existingCompany = companyRepository.findByBusinessName(name);
-//        existingCompany.getWorker().add(existingUser);
-//        userRepository.save(existingUser);
-//    }
+    @Override
+    public void saveConnection(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        user.setConnections(user.getConnections());
+
+    }
+
 
     public Map<Long,String> findUsers(String name) {
         List<User> results = userRepository.findAll();
@@ -99,21 +102,6 @@ public class UserServiceImpl implements UserService {
         }
         return matches;
     }
-
-//    public void saveConnections(User user) {
-////        Set<User> u = new HashSet<>();
-//        user.getConnections().add(user);
-//        userRepository.save(user);
-//    }
-//
-//    public Map<Long,String> findConnections(User user) {
-//        Map<Long, String> matches = new HashMap<>();
-//        Set<User> users = user.getConnections();
-//        for (User u: users) {
-//            matches.put(u.getId(), u.getName());
-//        }
-//        return matches;
-//    }
 
     public Map<Long,String> findCompanies(String name) {
         List<Company> results = companyRepository.findAll();
@@ -156,18 +144,13 @@ public class UserServiceImpl implements UserService {
         return matches;
     }
 
-//    public Map<Long,String> findCompaniesByWorker(User user) {
-//        List<User> results = userRepository.findAll();
-//        Map<Long, String> matches = new HashMap<>();
-//        String userName = user.getUsername();
-//        for (User u: results) {
-//            String userName2 = u.getCreator().getUsername();
-//            if (userName2.equals(userName)) {
-//                matches.put(u.getId(), u.getBusinessName());
-//            }
-//        }
-//        return matches;
-//    }
+    public Map<Long,String> findConnectionsByUser(User user) {
+        Map<Long, String> matches = new HashMap<>();
+        for (User u : user.getConnections()) {
+            matches.put(u.getId(), u.getName());
+        }
+        return matches;
+    }
 
     public Map<Long,String> findPostsByCreator(User user) {
         List<Post> results = postRepository.findAll();
@@ -191,12 +174,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(existingUser);
     }
 
-//    public void saveCompany(String associatedCompany) {
-//
-//    }
-
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id);
     }
 }

@@ -79,23 +79,50 @@
 <div id="searchResults" class="container" style="padding-bottom: 15px">
         <h2>Results:</h2>
         <div>
-            <c:if test="${(discoverForm.search != null)}">
-                <c:forEach items="${results}" var="item">
-                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
-                        <c:if test="${(discoverForm.search != null) && !((discoverForm.username).equals(item.value))}">
-                            <form action="/connections" method="post">
-                                <input type="hidden" name="user1" value="${discoverForm}">
-                                <input type="hidden" name="user2" value="${item.value}">
-                                <input style="float: right" type="submit" value="Connect">
-                            </form>
-                            <form action="/connections">
-                                <input style="float: right" type="submit" value="View">
-                            </form>
-<%--                            <button style="float: right" type="submit">Connect</button>--%>
-                        </c:if></h3>
-<%--                        <button style="float: right" type="submit">View</button></h3>--%>
-                </c:forEach>
-            </c:if>
+<%--            <c:if test="${(discoverForm.search != null)}">--%>
+<%--                <c:forEach items="${results}" var="item">--%>
+<%--                    <c:if test="${(discoverForm.search != null) && !((discoverForm.username).equals(item.value))}">--%>
+<%--                        <form:form method="POST" action="/connect/${item.key}" >--%>
+<%--                            <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}--%>
+<%--                                <input type="hidden" name="user" value="${item.key}">--%>
+<%--                                <button style="float: right" type="submit">Connect</button></h3>--%>
+<%--                        </form:form>--%>
+<%--                        &lt;%&ndash;                            <button style="float: right" type="submit">Connect</button>&ndash;%&gt;--%>
+<%--                    </c:if></h3>--%>
+<%--                    &lt;%&ndash;                        <button style="float: right" type="submit">View</button></h3>&ndash;%&gt;--%>
+<%--                </c:forEach>--%>
+<%--            </c:if>--%>
+
+                <c:if test="${(discoverForm.search != null)}">
+                    <c:forEach items="${results}" var="item">
+                        <c:if test="${!((discoverForm.name).equals(item.value))}">
+                            <form:form method="POST" action="/connect/${item.key}" >
+                                <div style="text-align: left; margin-left: 25px; margin-right: 25px">
+                                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
+                                        <button style="float: right" type="submit">Connect</button></h3>
+                                </div><br>
+
+                            </form:form>
+                        </c:if>
+                    </c:forEach>
+                </c:if>
+
+
+<%--            <c:if test="${(discoverForm.search != null)}">--%>
+<%--                <c:forEach items="${results}" var="item">--%>
+<%--                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}--%>
+<%--                        <c:if test="${(discoverForm.search != null) && !((discoverForm.username).equals(item.value))}">--%>
+<%--                            <form action="/connections" method="post">--%>
+<%--                                <input style="float: right" type="submit" value="Connect">--%>
+<%--                            </form>--%>
+<%--                            <form acjoinCotion="/connections">--%>
+<%--                                <input style="float: right" type="submit" value="View">--%>
+<%--                            </form>--%>
+<%--&lt;%&ndash;                            <button style="float: right" type="submit">Connect</button>&ndash;%&gt;--%>
+<%--                        </c:if></h3>--%>
+<%--&lt;%&ndash;                        <button style="float: right" type="submit">View</button></h3>&ndash;%&gt;--%>
+<%--                </c:forEach>--%>
+<%--            </c:if>--%>
         </div>
 </div>
 

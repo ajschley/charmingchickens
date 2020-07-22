@@ -91,15 +91,13 @@
         </div>
         <br>
         <div id="connections">
-            <form action="/editProfile" method="get">
+            <form action="/connections" method="get">
                 <button class="profileButton" type="submit">My Connections</button>
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
         <br>
     </div>
-
-
     <div id="rightSide">
         <div id="businessTitle">
             <br>
@@ -108,10 +106,14 @@
         </div>
         <div id="businessInfo">
             <c:forEach items="${results}" var="item">
-                <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+                <div style="text-align: left; margin-left: 15px; margin-right: 15px"; border-bottom: 1px dashed black; >
+                    <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
+                </div><br>
             </c:forEach>
             <c:forEach items="${results2}" var="item">
-                <h4 style="padding-top: 5px; border-bottom: 1px dashed black; text-align: left; margin-left: 10px">${item.value}<button style="float: right" type="submit">View</button></h4>
+                <div style="text-align: left; margin-left: 15px; margin-right: 15px; border-bottom: 1px dashed black; ">
+                    <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
+                </div><br>
             </c:forEach>
 
         </div>

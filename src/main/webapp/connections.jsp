@@ -51,14 +51,19 @@
     </c:if>
 
 </div>
-<div id="connections" class="container" style="padding-bottom: 15px">
-    <h2>Connections:</h2>
+<br>
+<div id="myconnections" class="container" style="padding-bottom: 15px">
+    <h2><u>Results</u></h2>
     <div>
-        <c:if test="${(results != null)}">
+        <c:if test="${(connectionsForm.connections != null)}">
             <c:forEach items="${results}" var="item">
-                <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
+                <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="connection">
+                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
+                </div><br>
             </c:forEach>
         </c:if>
+
+
     </div>
 </div>
 
