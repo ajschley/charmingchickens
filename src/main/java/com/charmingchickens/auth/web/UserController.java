@@ -193,6 +193,7 @@ public class UserController {
         return "redirect:/connections";
     }
 
+
     @RequestMapping(value = "/connections", method = RequestMethod.GET)
     public String connections(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
