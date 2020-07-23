@@ -59,13 +59,13 @@
     </div>
     <br>
     <div id="ourmission">
-        <h2>Our Mission</h2>
+        <h2><u>Our Mission</u></h2>
         <p>Our mission is to provide resources for minority owned businesses to start, and continue growing, their businesses without the worry of being discriminated against.
         </p>
     </div>
     <br>
     <div id="about">
-        <h2>What is StartUS?</h2>
+        <h2><u>What is StartUS?</u></h2>
             <div id="abouttext">
                 <div>
                     <h3>How Can We Help Your Business?</h3>
@@ -81,7 +81,7 @@
     </div>
     <div id="team">
         <div id teamText style="text-align: left">
-            <h2>Meet Our Team</h2>
+            <h2><u>Meet Our Team</u></h2>
             <p>Meet our team, who are tirelessly working to bring equal opportunities to minority businesses across the United States.</p>
         </div>
 
@@ -103,19 +103,25 @@
                 </div>
                 <div id="column">
                     <img id="tpic" src="alec-headshot.jpg" />
-                    <p>Alec joined Simulating Smiles in 2020. </p>
+                    <p>Alec joined StartUS in 2020. </p>
+                </div>
+            </div>
+            <div id="row">
+                <div id="column">
+                    <img id="tpic" src="alec-headshot.jpg" />
+                    <p>Alec joined StartUS in 2020. </p>
                 </div>
             </div>
         </div>
     </div>
     <div id="contact">
         <div id="contactus">
-            <h2>Contact Us</h2>
+            <h2><u>Contact Us</u></h2>
             <div id="messagebox">
                 <form name="theform">
-                    <input style="border:1px solid black" type="text" size="25" id="name" name="name" placeholder="Please Enter Your Username"><br><br>
-                    <textarea style="border:1px solid black" rows="5" cols="50" onKeyup="checkform2()"></textarea><br>
-                    <input onclick="addEmail()" id="submitbutton2" type="submit" disabled="disabled" value="Contact" />
+                    <input style="border: solid gray" type="text" size="25" id="name" name="name" placeholder="Please Enter Your Username"><br><br>
+                    <textarea style="border: solid gray" rows="5" cols="50" onKeyup="checkform()" placeholder="Please Enter Your Message"></textarea><br>
+                    <input onclick="addEmail()" id="submitbutton" type="submit" disabled="disabled" value="Contact" />
                 </form>
             </div>
         </div>
@@ -126,4 +132,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
+<script>
+    function checkform() {
+        var f = document.forms["theform"].elements;
+        var cansubmit = true;
+        for (var i = 0; i < f.length; i++) {
+            if (f[i].value.length == 0) cansubmit = false;
+        }
+        document.getElementById('submitbutton').disabled = !cansubmit;
+    }
+</script>
 </html>

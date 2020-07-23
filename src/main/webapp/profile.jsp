@@ -147,12 +147,6 @@
                 <button style="text-align: left" type="submit">Post</button>
 
             </form:form>
-            <%--            <form name="theform">--%>
-            <%--                <textarea id="p" style="border:1px solid black" rows="5" cols="57" placeholder="Leave a post..." onKeyup="checkform()"></textarea>--%>
-            <%--            </form>--%>
-            <%--            <form action="/post" method="post">--%>
-            <%--                <input id="submitbutton2" type="submit" disabled="disabled" value="Post" />--%>
-            <%--            </form>--%>
         </div>
         <br>
         <div id="pastPosts" >
