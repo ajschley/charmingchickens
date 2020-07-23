@@ -1,12 +1,7 @@
 package com.charmingchickens.auth.model;
 
 import javax.persistence.*;
-import java.awt.*;
-import java.io.File;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
@@ -29,10 +24,10 @@ public class User {
     private String recurring;
     private String search;
     private String searchType;
-    private Company company;
+    private Long user;
     private String location;
     private String post;
-    private Set<User> employees;
+    private Set<User> connections;
 
 
     @Id
@@ -78,6 +73,16 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "connection_id"))
+    public Set<User> getConnections() {
+        return connections;
+    }
+
+    public void setConnections(Set<User> connections) {
+        this.connections = connections;
     }
 
     public String getMessage() { return message; }
@@ -164,6 +169,11 @@ public class User {
         this.profilePic = profilePic;
     }
 
+    public Long getUser() { return user; }
+
+    public void setUser(Long user) {
+        this.user = user;
+    }
 //
 //    @ManyToMany
 //    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))

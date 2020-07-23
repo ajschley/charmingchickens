@@ -147,13 +147,16 @@
 </div>
 <br>
 <div id="searchResults" class="container" style="padding-bottom: 15px">
-    <h2>Results</h2>
+    <h2><u>Results</u></h2>
     <div>
         <c:if test="${(joinCompanyForm.search != null)}">
             <c:forEach items="${results}" var="item">
                 <form:form method="POST" action="/joinCo/${item.key}" >
-                <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
-                    <button style="float: right" type="submit">Join</button></h3>
+                    <div style="text-align: left; margin-left: 25px; margin-right: 25px">
+                        <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}
+                            <button style="float: right" type="submit">Join</button></h3>
+                    </div><br>
+
                 </form:form>
 
             </c:forEach>

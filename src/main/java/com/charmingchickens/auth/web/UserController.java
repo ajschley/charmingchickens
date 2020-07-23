@@ -155,8 +155,6 @@ public class UserController {
         return "redirect:/profile";
     }
 
-
-
     @RequestMapping(value = "/joinCompany", method = RequestMethod.GET)
     public String joinCompany(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -176,6 +174,49 @@ public class UserController {
         model.addAttribute("results", userService.findCompanies(joinCompanyForm.getSearch()));
         userService.saveJoin(joinCompanyForm);
         return "joinCompany";
+    }
+
+    @RequestMapping(value = "/connect/{user_id}", method = RequestMethod.POST)
+    public String connect(@PathVariable Long user_id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+
+        User u = userService.findById(user_id);
+        User u1 = userService.findByUsername(name);
+
+
+        Set<User> con = u1.getConnections();
+        con.add(u);
+        u1.setConnections(con);
+        userService.update(u1);
+
+        return "redirect:/connections";
+    }
+
+    @RequestMapping(value = "/connections", method = RequestMethod.GET)
+    public String connections(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+
+        model.addAttribute("connectionsForm",userService.findByUsername(name));
+        model.addAttribute("results", userService.findConnectionsByUser(existingUser));
+
+        return "connections";
+    }
+
+    @RequestMapping(value = "/connections", method = RequestMethod.POST)
+    public String connections(@ModelAttribute("connectionsForm") User connectionsForm, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "connections";
+        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        model.addAttribute("connectionsForm",userService.findByUsername(name));
+        model.addAttribute("results", userService.findConnectionsByUser(existingUser));
+        userService.saveConnection(connectionsForm);
+        return "discover";
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
@@ -204,11 +245,12 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "discover";
         }
-
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
-        model.addAttribute("discoverForm",userService.findByUsername(name));
-
+        User existingUser = userService.findByUsername(name);
+        existingUser.setSearch(discoverForm.getSearch());
+        existingUser.setSearchType(discoverForm.getSearchType());
+        model.addAttribute("discoverForm",existingUser);
         if (discoverForm.getSearchType().equals("user")) {
             model.addAttribute("results", userService.findUsers(discoverForm.getSearch()));
 //            userService.findUsers(discoverForm.getSearch());
@@ -216,6 +258,7 @@ public class UserController {
             model.addAttribute("results", userService.findCompanies(discoverForm.getSearch()));
         }
 //        userService.saveDiscover(discoverForm);
+        userService.saveDiscover(discoverForm);
         return "discover";
     }
 

@@ -89,17 +89,17 @@
             <div id="row">
                 <div id="column">
                     <img id="tpic" src="alec-headshot.jpg" />
-                    <p>Alec joined Simulating Smiles in 2020. </p>
+                    <p>Alec joined StartUS in 2020. </p>
                 </div>
                 <div id="column">
-                    <img id="tpic" src="alec-headshot.jpg" />
-                    <p>Alec joined Simulating Smiles in 2020. </p>
+                    <img id="tpic" src="commons_pic_6.jpg" />
+                    <p>Donovan joined StartUS in 2020. </p>
                 </div>
             </div>
             <div id="row">
                 <div id="column">
-                    <img id="tpic" src="alec-headshot.jpg" />
-                    <p>Alec joined Simulating Smiles in 2020. </p>
+                    <img id="tpic" src="commons_pic_7.png" />
+                    <p>Brian joined StartUS in 2020. </p>
                 </div>
                 <div id="column">
                     <img id="tpic" src="alec-headshot.jpg" />
