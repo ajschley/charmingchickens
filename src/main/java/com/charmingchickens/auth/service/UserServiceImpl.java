@@ -60,6 +60,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void saveProfilePic(User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User existingUser = findByUsername(name);
+        existingUser.setProfilePic(user.getProfilePic());
+        userRepository.save(existingUser);
+    }
+
+    @Override
     public void saveDiscover(User user) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();

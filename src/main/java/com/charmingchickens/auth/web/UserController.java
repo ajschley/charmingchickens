@@ -104,7 +104,60 @@ public class UserController {
         model.addAttribute("results2",results);
         model.addAttribute("results3",postService.findByCreator(existingUser));
         userService.setPost(profileForm);
+        userService.saveProfilePic(profileForm);
         return "redirect:/profile";
+    }
+
+    @RequestMapping(value = "/view/{user_id}", method = RequestMethod.POST)
+    public String view(@PathVariable Long user_id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        User u = userService.findById(user_id);
+        existingUser.setView(u.getId());
+        userService.update(existingUser);
+        return "redirect:/viewProfile";
+    }
+
+    @RequestMapping(value = "/viewProfile", method = RequestMethod.GET)
+    public String viewProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        Long u_id = userService.findByUsername(name).getView();
+        Map<Long, String> results = new HashMap<>();
+        results.putAll(userService.findCompaniesByCreator(userService.findById(u_id)));
+        results.putAll(userService.findCompaniesByEmployee(userService.findById(u_id)));
+        model.addAttribute("results2",results);
+        model.addAttribute("results3",postService.findByCreator(userService.findById(u_id)));
+        model.addAttribute("viewProfileForm", userService.findById(u_id));
+        return "viewProfile";
+    }
+
+    @RequestMapping(value = "/viewCo/{company_id}", method = RequestMethod.POST)
+    public String viewCo(@PathVariable Long company_id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        existingUser.setCurCompany(company_id);
+        userService.update(existingUser);
+        return "redirect:/viewCompany";
+    }
+
+    @RequestMapping(value = "/viewCompany", method = RequestMethod.GET)
+    public String viewCompany(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        Long c_id = existingUser.getCurCompany();
+        Company c = companyService.findById(c_id);
+        Map<Long, String> results = new HashMap<>();
+        results.put(c.getCreator().getId(), c.getCreator().getName());
+        for (User u: c.getEmployees()) {
+            results.put(u.getId(), u.getName());
+        }
+        model.addAttribute("results2",results);
+        model.addAttribute("viewCompanyForm", companyService.findById(existingUser.getCurCompany()));
+        return "viewCompany";
     }
 
     @RequestMapping(value = "/editProfile", method = RequestMethod.GET)

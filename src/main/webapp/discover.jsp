@@ -103,6 +103,12 @@
                                 </div><br>
 
                             </form:form>
+                            <form:form method="POST" action="/view/${item.key}" >
+                                <div style="text-align: left; margin-left: 25px; margin-right: 25px">
+                                    <button style="float: right" type="submit">View</button>
+                                </div><br>
+
+                            </form:form>
                         </c:if>
                     </c:forEach>
                 </c:if>

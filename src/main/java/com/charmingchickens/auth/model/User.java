@@ -15,7 +15,7 @@ public class User {
     private String message;
     private String name;
     private String about;
-    private URL profilePic;
+    private byte[] profilePic;
     private String email;
     private String from1;
     private String from2;
@@ -28,6 +28,8 @@ public class User {
     private String location;
     private String post;
     private Set<User> connections;
+    private Long view;
+    private Long curCompany;
 
 
     @Id
@@ -163,9 +165,9 @@ public class User {
         this.post = post;
     }
 
-    public URL getProfilePic() { return profilePic; }
+    public byte[] getProfilePic() { return profilePic; }
 
-    public void setProfilePic(URL profilePic) {
+    public void setProfilePic(byte[] profilePic) {
         this.profilePic = profilePic;
     }
 
@@ -173,6 +175,18 @@ public class User {
 
     public void setUser(Long user) {
         this.user = user;
+    }
+
+    public Long getView() { return view; }
+
+    public void setView(Long view) {
+        this.view = view;
+    }
+
+    public Long getCurCompany() { return curCompany; }
+
+    public void setCurCompany(Long curCompany) {
+        this.curCompany = curCompany;
     }
 //
 //    @ManyToMany

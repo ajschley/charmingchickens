@@ -13,6 +13,8 @@ public interface UserService {
 
     void saveProfile(User user);
 
+    void saveProfilePic(User user);
+
     void saveDiscover(User user);
 
     void saveJoin(User user);

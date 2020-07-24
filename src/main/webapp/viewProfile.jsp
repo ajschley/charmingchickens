@@ -55,59 +55,32 @@
 <div class="container">
     <div id="leftSide">
         <br>
-<%--        <div id="profilePic-container">--%>
-<%--            <c:if test="${profileForm.profilePic != null}">--%>
-<%--                <img id="profileImage" src="<c:url value="${profileForm.profilePic}"/>"/>--%>
-<%--            </c:if>--%>
-<%--            <c:if test="${profileForm.profilePic == null}">--%>
-<%--                <img id="profileImage" src="commons_pic_3.jpeg" />--%>
-<%--            </c:if>--%>
-<%--        </div>--%>
-<%--        <div>--%>
-<%--            <form:form method="POST" modelAttribute="profileForm">--%>
-<%--                <spring:bind path="profilePic">--%>
-<%--                    <div class="form-group ${status.error ? 'has-error' : ''}">--%>
-<%--                        <form:input type="file" path="profilePic" ></form:input>--%>
-<%--                        <form:errors path="profilePic"></form:errors>--%>
-<%--                    </div>--%>
-<%--                </spring:bind>--%>
-<%--                <button style="text-align: left" type="submit">Upload</button>--%>
-<%--            </form:form>--%>
-<%--        </div>--%>
-
         <div id="profilePic-container">
             <image id="profileImage" src="commons_pic_3.jpeg" />
         </div>
-        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+<%--        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>--%>
         <div id="name">
-            <h1>${profileForm.name}</h1>
+            <h1>${viewProfileForm.name}</h1>
         </div>
         <div id="email">
-            <h3>${profileForm.email}</h3>
+            <h3>${viewProfileForm.email}</h3>
         </div>
         <br>
         <div id="profileAbout">
             <div id="about">
                 <h3 style="text-align: left; margin-left: 10px"><u>Bio:</u></h3>
-                <h4 style="text-align: left; margin-left: 10px">${profileForm.about.trim()}</h4>
+                <h4 style="text-align: left; margin-left: 10px">${viewProfileForm.about.trim()}</h4>
             </div>
         </div>
         <br>
         <div id="officeHours">
-            <h3 style="text-align: left; margin-left: 10px"><u>Office Hours: ${profileForm.recurring}</u></h3>
-            <h4>Start: ${profileForm.from1}:${profileForm.from2} | End: ${profileForm.to1}:${profileForm.to2}</h4>
-        </div>
-        <br>
-        <div id="edit">
-            <form action="/editProfile" method="get">
-                <button class="profileButton" type="submit">Edit Profile</button>
-            </form>
-            <%--            <button type="button" id="editButton">Edit Profile</button>--%>
+            <h3 style="text-align: left; margin-left: 10px"><u>Office Hours: ${viewProfileForm.recurring}</u></h3>
+            <h4>Start: ${viewProfileForm.from1}:${viewProfileForm.from2} | End: ${viewProfileForm.to1}:${viewProfileForm.to2}</h4>
         </div>
         <br>
         <div id="connections">
             <form action="/connections" method="get">
-                <button class="profileButton" type="submit">My Connections</button>
+                <button class="profileButton" type="submit">Their Connections</button>
             </form>
             <%--            <button type="button" id="editButton">Edit Profile</button>--%>
         </div>
@@ -121,57 +94,23 @@
         </div>
         <div id="businessInfo">
             <c:forEach items="${results}" var="item">
-                <form:form method="POST" action="/viewCo/${item.key}" >
-                    <div style="text-align: left; margin-left: 15px; margin-right: 15px; border-bottom: 1px dashed black; " >
-                        <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
-                    </div><br>
-                </form:form>
+                <div style="text-align: left; margin-left: 15px; margin-right: 15px"; border-bottom: 1px dashed black; >
+                    <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
+                </div><br>
             </c:forEach>
-
             <c:forEach items="${results2}" var="item">
-                <form:form method="POST" action="/viewCo/${item.key}" >
-                    <div style="text-align: left; margin-left: 15px; margin-right: 15px; border-bottom: 1px dashed black; ">
-                        <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
-                    </div><br>
-                </form:form>
-
+                <div style="text-align: left; margin-left: 15px; margin-right: 15px; border-bottom: 1px dashed black; ">
+                    <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
+                </div><br>
             </c:forEach>
+        </div>
+        <br>
 
-        </div>
-        <br>
-        <div id="createCompany">
-            <form action="/createCompany" method="get">
-                <button class="profileButton" type="submit">Create Company</button>
-            </form>
-            <%--            <button type="button" id="editButton">Edit Profile</button>--%>
-        </div>
-        <br>
-        <div id="joinCompany">
-            <form action="/joinCompany" method="get">
-                <button class="profileButton" type="submit">Join Company</button>
-            </form>
-        </div>
-        <br>
     </div>
     <div id="middle" >
         <br>
-        <div id="post" style="text-align: left; margin-left: 25px">
-            <form:form name="theform" method="POST" modelAttribute="profileForm">
-                <h1 class="form-signin-heading"><u>Your Wall</u></h1>
-                <spring:bind path="post">
-                    <div class="form-group ${status.error ? 'has-error' : ''}">
-                        <form:textarea rows="5" cssStyle="font-size: medium; width: 95%; text-align: left" type="text" path="post" class="form-control" placeholder="Leave a post..."></form:textarea>
-                        <form:errors path="post"></form:errors>
-                    </div>
-                </spring:bind>
-
-                <button id="submitbutton" style="text-align: left" type="submit">Post</button>
-
-            </form:form>
-        </div>
-        <br>
         <div id="pastPosts" >
-            <h1 class="form-signin-heading" style="text-align: left; margin-left: 25px"><u>Past Activity</u></h1>
+            <h1 class="form-signin-heading" style="text-align: left; margin-left: 25px"><u>Activity</u></h1>
             <c:forEach items="${results3}" var="item">
                 <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="posts">
                     <h4 style="text-align: left; margin-left: 10px; padding-bottom: 30px">${item.value}</h4>
@@ -207,5 +146,3 @@
     // }
 </script>
 </html>
-
-
