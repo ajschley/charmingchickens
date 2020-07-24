@@ -56,10 +56,13 @@
     <h2><u>Results</u></h2>
     <div>
         <c:if test="${(connectionsForm.connections != null)}">
+
             <c:forEach items="${results}" var="item">
-                <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="connection">
-                    <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
-                </div><br>
+                <form:form method="POST" action="/view/${item.key}" >
+                    <div style="text-align: left; margin-left: 25px; margin-right: 25px" id="connection">
+                        <h3 style="padding-top: 15px; border-top: 1px dashed black">${item.value}<button style="float: right" type="submit">View</button></h3>
+                    </div><br>
+                </form:form>
             </c:forEach>
         </c:if>
 

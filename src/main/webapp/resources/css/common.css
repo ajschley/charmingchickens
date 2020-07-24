@@ -330,3 +330,19 @@ h7 {
     border: solid lightgray;
     background-color: white;
 }
+
+#leftS {
+    border-radius: 25px;
+    float:left;
+    width:49%;
+    text-align: center;
+    border: solid gray;
+}
+
+#rightS {
+    border-radius: 25px;
+    float:right;
+    width:49%;
+    text-align: center;
+    border: solid gray;
+}

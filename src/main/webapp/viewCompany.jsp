@@ -53,7 +53,7 @@
 </div>
 <br>
 <div class="container">
-    <div id="leftSide">
+    <div id="leftS">
         <br>
         <div id="profilePic-container">
             <image id="profileImage" src="commons_pic_3.jpeg" />
@@ -64,22 +64,26 @@
         </div>
         <br>
     </div>
-    <div id="rightSide">
+    <div id="rightS">
         <div id="businessTitle">
             <br>
-            <h1>My Companies</h1>
+            <h1>Employees</h1>
             <br>
         </div>
         <div id="employeeInfo">
             <c:forEach items="${results}" var="item">
-                <div style="text-align: left; margin-left: 15px; margin-right: 15px"; border-bottom: 1px dashed black; >
-                    <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
-                </div><br>
+                <form:form method="POST" action="/view/${item.key}" >
+                    <div style="text-align: left; margin-left: 15px; margin-right: 15px"; border-bottom: 1px dashed black; >
+                        <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
+                    </div><br>
+                </form:form>
             </c:forEach>
             <c:forEach items="${results2}" var="item">
-                <div style="text-align: left; margin-left: 15px; margin-right: 15px; border-bottom: 1px dashed black; ">
-                    <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
-                </div><br>
+                <form:form method="POST" action="/view/${item.key}" >
+                    <div style="text-align: left; margin-left: 15px; margin-right: 15px; border-bottom: 1px dashed black; ">
+                        <h4 style="padding-top: 5px; text-align: left; margin-left: 10px">${item.value}<button style="background-color: white; width: 50px; float: right; font-size: 12px" type="submit">View</button></h4>
+                    </div><br>
+                </form:form>
             </c:forEach>
         </div>
         <br>

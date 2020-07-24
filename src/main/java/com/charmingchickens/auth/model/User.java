@@ -30,6 +30,8 @@ public class User {
     private Set<User> connections;
     private Long view;
     private Long curCompany;
+//    private int rating;
+//    private int numOfRatings;
 
 
     @Id
@@ -188,6 +190,18 @@ public class User {
     public void setCurCompany(Long curCompany) {
         this.curCompany = curCompany;
     }
+
+//    public void setRating(int rating) {
+//        this.rating += rating;
+//    }
+//
+//    public int getRating() { return rating; }
+//
+//    public void setNumOfRatings(int numOfRatings) {
+//        this.numOfRatings = numOfRatings;
+//    }
+//
+//    public int getNumOfRatings() { return numOfRatings; }
 //
 //    @ManyToMany
 //    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
