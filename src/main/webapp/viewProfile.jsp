@@ -79,32 +79,29 @@
         </div>
 <%--        <br>--%>
 
-<%--        <div id="name">--%>
-<%--            <c:if test="${viewProfileForm.rating != null}">--%>
-<%--                <h3>Rating: ${viewProfileForm.rating / viewProfileForm.numOfRatings}</h3>--%>
-<%--                <br>--%>
-<%--            </c:if>--%>
-<%--        </div>--%>
+        <div id="name">
+            <h3>Rating: ${result4}</h3>
+        </div>
+        <br>
+        <div>
+            <form:form method="POST" modelAttribute="viewProfileForm">
+                <spring:bind path="rating">
+                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <form:select path="rating" class="form-control" cssStyle="width: 82%; margin: 0 auto;">
+                            <form:option value="NONE" label="--- Select a Rating ---"/>
+                            <form:option value="1" item="1" />
+                            <form:option value="2" item="2" />
+                            <form:option value="3" item="3" />
+                            <form:option value="4" item="4" />
+                            <form:option value="5" item="5" />
+                        </form:select>
+                        <form:errors path="rating"></form:errors>
+                    </div>
+                </spring:bind>
 
-<%--        <div>--%>
-<%--            <form:form method="POST" modelAttribute="viewProfileForm">--%>
-<%--                <spring:bind path="rating">--%>
-<%--                    <div class="form-group ${status.error ? 'has-error' : ''}">--%>
-<%--                        <form:select path="rating" class="form-control" cssStyle="width: 82%; margin: 0 auto;">--%>
-<%--                            <form:option value="NONE" label="--- Select a Rating ---"/>--%>
-<%--                            <form:option value="1" item="1" />--%>
-<%--                            <form:option value="2" item="2" />--%>
-<%--                            <form:option value="3" item="3" />--%>
-<%--                            <form:option value="4" item="4" />--%>
-<%--                            <form:option value="5" item="5" />--%>
-<%--                        </form:select>--%>
-<%--                        <form:errors path="rating"></form:errors>--%>
-<%--                    </div>--%>
-<%--                </spring:bind>--%>
-
-<%--                <button onclick="${viewProfileForm.numOfRatings += 1}" id="submitbutton" style="text-align: left" type="submit">Rate</button>--%>
-<%--            </form:form>--%>
-<%--        </div>--%>
+                <button id="submitbutton" style="text-align: left" type="submit">Rate</button>
+            </form:form>
+        </div>
         <br>
         <div id="connections">
             <form action="/connections" method="get">

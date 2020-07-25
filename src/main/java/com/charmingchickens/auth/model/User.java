@@ -30,7 +30,7 @@ public class User {
     private Set<User> connections;
     private Long view;
     private Long curCompany;
-//    private int rating;
+    private String rating;
 //    private int numOfRatings;
 
 
@@ -190,6 +190,13 @@ public class User {
     public void setCurCompany(Long curCompany) {
         this.curCompany = curCompany;
     }
+
+    public String getRating() { return rating; }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
 
 //    public void setRating(int rating) {
 //        this.rating += rating;

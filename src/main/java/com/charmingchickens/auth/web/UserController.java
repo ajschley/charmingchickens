@@ -2,10 +2,8 @@ package com.charmingchickens.auth.web;
 
 import com.charmingchickens.auth.model.Company;
 import com.charmingchickens.auth.model.Post;
-import com.charmingchickens.auth.service.CompanyService;
-import com.charmingchickens.auth.service.PostService;
-import com.charmingchickens.auth.service.SecurityService;
-import com.charmingchickens.auth.service.UserService;
+import com.charmingchickens.auth.model.Rating;
+import com.charmingchickens.auth.service.*;
 import com.charmingchickens.auth.validator.UserValidator;
 import com.charmingchickens.auth.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +30,9 @@ public class UserController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private RatingService ratingService;
 
     @Autowired
     private SecurityService securityService;
@@ -130,7 +131,33 @@ public class UserController {
         model.addAttribute("results2",results);
         model.addAttribute("results3",postService.findByCreator(userService.findById(u_id)));
         model.addAttribute("viewProfileForm", userService.findById(u_id));
+        model.addAttribute("result4", ratingService.findByUser(userService.findById(u_id)));
         return "viewProfile";
+    }
+
+    @RequestMapping(value = "/viewProfile", method = RequestMethod.POST)
+    public String viewProfile(@ModelAttribute("profileForm") User viewProfileForm, BindingResult bindingResult, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User existingUser = userService.findByUsername(name);
+        Long u_id = userService.findByUsername(name).getView();
+        if (bindingResult.hasErrors()) {
+            return "viewProfile";
+        }
+        existingUser.setRating(viewProfileForm.getRating());
+        Rating newRating = new Rating();
+        newRating.setUser(userService.findById(u_id));
+        newRating.setNum(existingUser.getRating());
+        ratingService.save(newRating);
+        Map<Long, String> results = new HashMap<>();
+        results.putAll(userService.findCompaniesByCreator(userService.findById(u_id)));
+        results.putAll(userService.findCompaniesByEmployee(userService.findById(u_id)));
+        model.addAttribute("results2",results);
+        model.addAttribute("results3",postService.findByCreator(userService.findById(u_id)));
+        model.addAttribute("result4", ratingService.findByUser(userService.findById(u_id)));
+//        userService.setPost(profileForm);
+//        userService.saveProfilePic(profileForm);
+        return "redirect:/viewProfile";
     }
 
     @RequestMapping(value = "/viewCo/{company_id}", method = RequestMethod.POST)
