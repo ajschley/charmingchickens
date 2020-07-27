@@ -183,7 +183,7 @@ h7 {
 #abouttext {
     padding-right: 20px;
     width: 50%;
-    height: 580px;
+    height: 610px;
     float: left;
     grid-row: 1;
     grid-column: 1;
@@ -191,7 +191,7 @@ h7 {
 
 #aboutpic {
     width: 50%;
-    height: 580px;
+    height: 610px;
     float: right;
     grid-row: 1;
     grid-column: 2;
