@@ -95,20 +95,6 @@
                     </div>
                 </div>
             </div>
-            <div id="event3">
-                <div id="event3text">
-                    <div>
-                        <h3>Holiday Hackathon 2020</h3>
-                        <p> So, what is VR? Well, if you don't already know, VR stands for virtual reality. It is a simulated experience that can be similar to or different from the real world. For our purposes, we are working to create the most realistic dental simulations available on the market today. With the COVID-19 pandemic hitting us hard these past few months, practicing dental surgeries on real patients is unsafe, and it is our hope that you share this belief. <br><br>All across the globe, people are staying safe by turning to technology to socialize with friends, and engage with coworkers. But while these applications of virtual technology apply to all people, students have taken a huge blow to their educations. Now, practically every school has been forced to adjust. Classes are being offered online, but we know that it's just not the same as engaging with teachers and peers. For dental students, these changes make it almost impossible to practice. Therefore, it is more than likely that most dental students will have to spend more time at school, leading to increasing amounts of debt. In fact, before the pandemic, the average dental student graduates with <p1><b>$292,169</b></p1> in student loan debt. Simulating Smiles wants to eliminate that debt, or at least some of it! With our simulations students can practice their skills whenever they want, without consequences, so that they can keep their graduation rate on track.<br><br> Additionally, as an oral healthcare provider,or prospective oral healthcare provider, it is your resposibility to care for your patients in the best way possible, and right now, Simulating Smiles is working to offer you the ability to learn without human contact.Right now, Simulating Smiles is working to make our simulations compatible with all virtual reality systems available on the market today.
-                        </p>
-                    </div>
-                </div>
-                <div id="event3pic">
-                    <div>
-                        <img id="e3pic" src="commons_pic_5.jpg">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

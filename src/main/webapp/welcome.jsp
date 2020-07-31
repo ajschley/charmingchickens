@@ -106,14 +106,14 @@
                     <p>Brian joined StartUS in 2020. </p>
                 </div>
                 <div id="column">
-                    <img id="tpic" src="alec-headshot.jpg" />
-                    <p>Alec joined StartUS in 2020. </p>
+                    <img id="tpic" src="commons_pic_9.jpg" />
+                    <p>Danna joined StartUS in 2020. </p>
                 </div>
             </div>
             <div id="row">
                 <div id="column">
-                    <img id="tpic" src="alec-headshot.jpg" />
-                    <p>Alec joined StartUS in 2020. </p>
+                    <img id="tpic" src="commons_pic_10.jpg" />
+                    <p>Noelle joined StartUS in 2020. </p>
                 </div>
             </div>
         </div>
